@@ -46,6 +46,7 @@ local settings = {
 	autokillmonster = false;
 	autocompletequests = false;
 	autokillvicious = false;
+	autofindwindy = false;
 	autococonut = false;
 	autogumdrops = false;
 	autofarmsettings = {
@@ -1983,6 +1984,25 @@ autooptions:AddToggle({text = "AutoKill Monsters", callback = function(a)
 	    local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
 	    Event:FireServer(a_569)
     end
+end})
+
+autooptions:AddToggle({text = "AutoFind Windy Bee", callback = function(a)
+	settings.autofindwindy = a
+	if settings.autofindwindy then
+		notifmsg = "AutoFind Windy Bee Enabled"
+		sendnotification()
+	else
+		notifmsg = "AutoFind Windy Bee Disabled"
+		sendnotification()
+	end
+	while settings.autofindwindy do
+		wait(3)
+		for _,v in pairs(game.workspace.NPCBees:GetChildren()) do
+			if v.Name == "Windy" then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+			end
+		end
+	end
 end})
 
 autooptions:AddToggle({text = "Auto GumDrops", callback = function(a)
