@@ -14,6 +14,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zerov
 local visuals = library:CreateWindow("Visuals")
 local character = library:CreateWindow("Character")
 local miscellaneous = library:CreateWindow("Miscellaneous")
+local teleports = library:CreateWindow("Teleports")
 local uisettings = library:CreateWindow("UI Settings")
 local credits = library:CreateWindow("Credits")
 local settings = {
@@ -81,6 +82,64 @@ local settings = {
 		pineappleautofarm = false;
 		mountaintopautofarm = false;
 	};
+	WayPoints = {
+		["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
+		["Brown Bear"] = CFrame.new(282, 46, 236),
+		["Panda Bear"] = CFrame.new(106.3, 35, 50.1),
+		["Polar Bear"] = CFrame.new(-106, 119, -77),
+		["Science Bear"] = CFrame.new(267, 103, 20),
+		["Traveling Bear"] = CFrame.new(23.9, 14, 359.9),
+		["Mother Bear"] = CFrame.new(-183.8, 4.6, 87.5),
+		["Tunnel Bear"] = CFrame.new(507.3, 5.7, -45.7),
+		["Sun Bear"] = CFrame.new(23.25, 14, 360.26),
+		["Redfield Boost"] = CFrame.new(-332, 20, 244),
+		["Bluefield Boost"] = CFrame.new(319, 58, 103),
+		["MountainTop Boost"] = CFrame.new(-40, 176, -191.7),
+		["Red Cannon (22)"] = CFrame.new(-240, 17, 345),
+		["Blue Cannon (16)"] = CFrame.new(-287, 73, 22),
+		["Yellow Cannon (12)"] = CFrame.new(266, 109, -25),
+		["Slingshot (8)"] = CFrame.new(78, 23, 149),
+		["Bee Shop"] = CFrame.new(-136.8, 4.6, 243.4),
+		["Tool Shop"] = CFrame.new(86, 4.6, 294),
+		["Tool Shop 2"] = CFrame.new(165, 69, -161),
+		["MountainTop Shop"] = CFrame.new(-18, 176, -137),
+		["Ticket Tent"] = CFrame.new(-234, 17, 398),
+		["Red Clubhouse"] = CFrame.new(-334, 21, 216),
+		["Blue Clubhouse"] = CFrame.new(292, 4, 98),
+		["Ticket Shop"] = CFrame.new(-12.8, 184, -222.2),
+		["Club Honey"] = CFrame.new(44.8, 5, 319.6),
+		["RoyalJelly Shop"] = CFrame.new(-297, 53, 68),
+		["Ticket RoyalJelly Shop"] = CFrame.new(81, 18, 240),
+		["Honeystorm Dispensor"] = CFrame.new(238.4, 33.3, 165.6),
+		["Blueberry Dispenser"] = CFrame.new(313.3, 58, 86.9),
+		["Strawberry Dispenser"] = CFrame.new(-320.5, 46, 272.5),
+		["Sprout Dispenser"] = CFrame.new(-269.26, 26.56, 267.31),
+		["Instant Honey Convertor"] = CFrame.new(282, 68, -62),
+		["King Beetles Lair"] = CFrame.new(218, 3, 140),
+		["Clover Field"] = CFrame.new(174, 34, 189),
+		["Mushroom Field"] = CFrame.new(-258.1, 5, 299.7),
+		["Spider Field"] = CFrame.new(-57.2, 20, -5.3),
+		["Blue Field"] = CFrame.new(113.7, 4, 101.5),
+		["Sunflower Field"] = CFrame.new(-208, 4, 185),
+		["StrawBerry Field"] = CFrame.new(-169.3, 20, -3.2),
+		["Red Field"] = CFrame.new(-258.1, 5, 299.7),
+		["Dandelion Field"] = CFrame.new(-30, 4, 225),
+		["BamBoo Field"] = CFrame.new(93, 20, -25),
+		["Rose Field"] = CFrame.new(-322, 20, 124),
+		["Mushroom Field"] = CFrame.new(-94, 5, 116),
+		["Cactus Field"] = CFrame.new(-194, 68, -107),
+		["Pumpkin Field"] = CFrame.new(-194, 68, -182),
+		["MountainTop Field"] = CFrame.new(76, 176, -181),
+		["PineTree Field"] = CFrame.new(-318, 68, -150),
+		["Pineapple Field"] = CFrame.new(262, 68, -201),
+		["Onett"] = CFrame.new(-8.4, 234, -517.9),
+		["Gumdrop Dispenser"] = CFrame.new(63, 20.7, 38.7),
+		["Treat Dispenser"] = CFrame.new(193.9, 68, -123),
+		["Treat Shop"] = CFrame.new(-228.2, 5, 89.4),
+		["Star Hut"] = CFrame.new(135.9, 64.6, 322.1),
+		["Wealth Clock"] = CFrame.new(310.5, 47.6, 190),
+		["Ant Challenge"] = CFrame.new(90.6, 32.6, 501)
+	};
 	Cursorenabled = true;
 	CursorColor = Color3.fromRGB(221, 3, 255);
 	LineColour = Color3.fromRGB(221, 3, 255);
@@ -107,7 +166,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.2";
+local version = "1.3";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -2648,6 +2707,68 @@ autofarmfields:AddToggle({text = "AutoFarm MountainTop", callback = function(a)
 	end
 end})
 
+miscellaneous:AddButton({text = "Redeem Codes", callback = function()
+	notifmsg = "Redeeming Codes"
+	sendnotification()
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("BillionVisits")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Mocito100T")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("RedMarket")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Cubly")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("5mMembers")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Buoyant")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("BigBag")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Teespring")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("BeesBuzz123")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Discord100k")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("500mil")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Marshmallow")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("ClubConverters")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Sure")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("GumdropsForScience")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("SecretProfileCode")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("ClubBean")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Wink")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("38217")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Bopmaster")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Buzz")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Cog")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Connoisseur")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Crawlers")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Nectar")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Roof")
+	local Event = game:GetService("ReplicatedStorage").Events.PromoCodeEvent
+	Event:FireServer("Wax")
+	wait(1)
+	notifmsg = "Successfully Redeemed Codes"
+	sendnotification()
+end})
+
 miscellaneous:AddButton({text = "Use Field Dice", callback = function()
 	local A = {
         ["Name"] = "Field Dice"
@@ -2670,8 +2791,230 @@ miscellaneous:AddButton({text = "Sell Pollen", callback = function()
 	end
 end})
 
+miscellaneous:AddButton({text = "Collect Treasures", callback = function()
+	local function collecttreasure(treasure)
+		for i,v in ipairs(treasure:GetChildren()) do
+			if v.Parent then
+				game.Players.LocalPlayer.Character:MoveTo(v.Position)
+			end
+		wait(1)
+		end
+	end
+	collecttreasure(workspace.TreasureCollectibles)
+	wait(1)
+		game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
+end})
+
 miscellaneous:AddButton({text = "ReJoin", callback = function()
 	game:GetService('TeleportService'):Teleport(game.PlaceId)
+end})
+
+teleports:AddButton({text = "Hive Thingy", callback = function()
+	game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
+	notifmsg = "Teleported To Hive Thingy"
+	sendnotification()
+end})
+
+teleports:AddButton({text = "Wealth Clock", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Wealth Clock"]
+		notifmsg = "Teleported To Wealth Clock"
+		sendnotification()
+end})
+
+teleports:AddButton({text = "Onett Guy", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Onett"]
+		notifmsg = "Teleported To Onett Guy"
+		sendnotification()
+end})
+
+teleports:AddButton({text = "Ant Challenge", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Ant Challenge"]
+		notifmsg = "Teleported To Ant Challenge"
+		sendnotification()
+end})
+
+local bears = teleports:AddFolder("Bear Teleports")
+bears:AddButton({text = "Black Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Black Bear"]
+	notifmsg = "Teleported To Black Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Brown Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Brown Bear"]
+	notifmsg = "Teleported To Brown Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Panda Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Panda Bear"]
+	notifmsg = "Teleported To Panda Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Science Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Science Bear"]
+	notifmsg = "Teleported To Science Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Polar Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Polar Bear"]
+	notifmsg = "Teleported To Polar Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Mother Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Mother Bear"]
+	notifmsg = "Teleported To Mother Bear"
+	sendnotification()
+end})
+
+bears:AddButton({text = "Tunnel Bear", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Tunnel Bear"]
+	notifmsg = "Teleported To Tunnel Bear"
+	sendnotification()
+end})
+
+local fieldboosts = teleports:AddFolder("Field Boosters")
+fieldboosts:AddButton({text = "RedField Booster", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Redfield Boost"]
+	notifmsg = "Teleported To RedField Booster"
+	sendnotification()
+end})
+
+fieldboosts:AddButton({text = "BlueField Booster", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Bluefield Boost"]
+	notifmsg = "Teleported To BlueField Booster"
+	sendnotification()
+end})
+
+fieldboosts:AddButton({text = "MountainTop Booster", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["MountainTop Boost"]
+	notifmsg = "Teleported To MountainTop Booster"
+	sendnotification()
+end})
+
+local cannons = teleports:AddFolder("Cannon Teleports")
+cannons:AddButton({text = "Red Cannon", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Red Cannon (22)"]
+	notifmsg = "Teleported To Red Cannon"
+	sendnotification()
+end})
+
+cannons:AddButton({text = "Blue Cannon", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Blue Cannon (16)"]
+	notifmsg = "Teleported To Blue Cannon"
+	sendnotification()
+end})
+
+cannons:AddButton({text = "Yellow Cannon", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Yellow Cannon (12)"]
+	notifmsg = "Teleported To Yellow Cannon"
+	sendnotification()
+end})
+
+cannons:AddButton({text = "Slingshot", callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Slingshot (8)"]
+	notifmsg = "Teleported To Slingshot"
+	sendnotification()
+end})
+
+local shops = teleports:AddFolder("Shop Teleports")
+shops:AddButton({text = "Bee Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Bee Shop"]
+		notifmsg = "Teleported To Bee Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Basic Tool Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Tool Shop"]
+		notifmsg = "Teleported To Basic Tool Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Advanced Tool Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Tool Shop 2"]
+		notifmsg = "Teleported To Advanced Tool Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "MountainTop Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["MountainTop Shop"]
+		notifmsg = "Teleported To MountainTop Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Ticket Tent Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Ticket Tent"]
+		notifmsg = "Teleported To Ticket Tent Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Ticket Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Ticket Shop"]
+		notifmsg = "Teleported To Ticket Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "RoyalJelly Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["RoyalJelly Shop"]
+		notifmsg = "Teleported To RoyalJelly Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "RoyalJelly Ticket Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Ticket RoyalJelly Shop"]
+		notifmsg = "Teleported To RoyalJelly Ticket Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "HoneyStorm Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Honeystorm Dispensor"]
+		notifmsg = "Teleported To HoneyStorm Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Instant Honey Convertor", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Instant Honey Convertor"]
+		notifmsg = "Teleported To Instant Honey Convertor"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Treat Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Treat Dispenser"]
+		notifmsg = "Teleported To Treat Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Sprout Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Sprout Dispenser"]
+		notifmsg = "Teleported To Sprout Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "GumDrop Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Gumdrop Dispenser"]
+		notifmsg = "Teleported To GumDrop Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Treat Shop", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Treat Shop"]
+		notifmsg = "Teleported To Treat Shop"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Blueberry Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Blueberry Dispenser"]
+		notifmsg = "Teleported To Blueberry Dispenser"
+		sendnotification()
+end})
+
+shops:AddButton({text = "Strawberry Dispenser", callback = function()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = settings.WayPoints["Strawberry Dispenser"]
+		notifmsg = "Teleported To Strawberry Dispenser"
+		sendnotification()
 end})
 
 uisettings:AddToggle({text = "Cursor", callback = function(a)
