@@ -50,6 +50,7 @@ local settings = {
 	autofindwindy = false;
 	autococonut = false;
 	autogumdrops = false;
+	autorequestsprout = false;
 	annoyserver = false;
 	god = false;
 	buyitem = "";
@@ -2220,6 +2221,22 @@ autooptions:AddToggle({text = "AutoKill Monsters", callback = function(a)
 	    local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
 	    Event:FireServer(a_569)
     end
+end})
+
+autooptions:AddToggle({text = "Auto Request Sprouts", callback = function(a)
+	settings.autorequestsprout = a
+	if settings.autorequestsprout then
+		notifmsg = "Auto Request Sprouts Enabled"
+		sendnotification()
+	else
+		notifmsg = "Auto Request Sprouts Disabled"
+		sendnotification()
+	end
+	while settings.autorequestsprout do
+		local Event = game.ReplicatedStorage.Events.ToyEvent
+		Event:FireServer("Sprout Summoner")
+		wait(5)
+	end
 end})
 
 autooptions:AddToggle({text = "AutoFind Windy Bee", callback = function(a)
