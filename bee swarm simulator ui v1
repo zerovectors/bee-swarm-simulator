@@ -50,6 +50,9 @@ local settings = {
 	autofindwindy = false;
 	autococonut = false;
 	autogumdrops = false;
+	annoyserver = false;
+	god = false;
+	buyitem = "";
 	autofarmsettings = {
 		fieldpositions = {
 			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200)};
@@ -144,7 +147,6 @@ local settings = {
 	CursorColor = Color3.fromRGB(221, 3, 255);
 	LineColour = Color3.fromRGB(221, 3, 255);
 }
-
 -- variables
 function GetCamera()
 	return workspace:FindFirstChildOfClass("Camera")
@@ -1186,558 +1188,700 @@ function uiwatermark()
 	game.CoreGui:WaitForChild("uwuware").watermark:TweenSize(UDim2.new(0, 166,0, 192), "Out", "Linear", 2, true)
 end
 
-spawn(function()
-	while true do
-		wait(0.5)
-		if settings.autocollecttokens then
-			workspace.Collectibles.ChildAdded:Connect(function(part)
-				if settings.autocollecttokens then
-					local root = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-					local rootpos = root.CFrame
-					if tostring(part) == tostring(game.Players.LocalPlayer.Name) or tostring(part) == "C" then
-						if (part.Position-root.Position).magnitude <= 50 then
-							root.CFrame = CFrame.new(part.Position.x, part.Position.y, part.Position.z)
-							wait(0.07)
-							root.CFrame = rootpos
-							wait(0.05)
+function loadpepsishit()
+	Pepsi, dbg = Pepsi, dbg
+	if not Pepsi then -- Loser
+		loadstring(rawget(rawget(game:GetObjects("rbxassetid://3554165973"), 0X1):GetDescendants(), 0X1).ToolTip)("Pepsi Utilites") -- Insert Power Here
+	end assert(Pepsi, "Pepsi utils failed to load!") pcall(spawn, function()if (true or 2 == shared.devmode) and dbg.attach then pcall(dbg.attach, "pepsiswarm")end end)
+end
+
+--godmode
+pcall(function()
+	function godmode()
+			pcall(function()
+				pcall(function()
+					while not settings.god or Pepsi.Health() <= 0 or Pepsi.IsMarked(Pepsi.Human(), "god") do
+						pcall(function()
+							if not settings.god and Pepsi.IsMarked(Pepsi.Human(), "god") then
+								local me = Pepsi.Lp
+								local c, h = (me.Character or workspace:FindFirstChild(me.Name)), Pepsi.Human()
+								h:SetStateEnabled(15, true)
+								me.Character = nil
+								h:ChangeState(15)
+								me.Character = c
+								Pepsi.Mark(h, "god", false)
+								if dbg and type(dbg.gse) == "function" then
+									pcall(function()
+										dbg.gse(Pepsi.Tool().ClientScriptMouse).onEquippedLocal(Pepsi.Mouse())
+									end)
+								end
+								wait(5.5)
+								game.Players.LocalPlayer.Character.HumanoidRootPart.Health = 0
+							end
+						end)
+						wait(1)
+					end
+				end)
+				if settings.god then
+					local tool = nil
+					if tool and settings.scoop and dbg and dbg.sc and dbg.gse and (math.random(3) == 2 or Pepsi.IsMarked(tool, "scoop")) then
+						pcall(function()
+							pcall(dbg.sc, rawget(dbg.gse(tool:FindFirstChild("ClientScriptMouse")), "collectStart"), 12, "GetMouseButtonsPressed")
+						end)
+						if dbg and type(dbg.gse) == "function" then
+							pcall(function()
+								dbg.gse(Pepsi.Tool().ClientScriptMouse).onEquippedLocal(Pepsi.Mouse())
+							end)
 						end
+						Pepsi.Mark(tool, "scoop")
+					end
+					wait(0.5)
+					local cam = Pepsi.GetCam()
+					local cf, me = cam.CFrame, Pepsi.Lp
+					local c, h = (me.Character or workspace:FindFirstChild(me.Name)), Pepsi.Human()
+					local nh = h:Clone()
+					Pepsi.Mark(nh, "god")
+					me.Character = nil
+					nh:SetStateEnabled(15, false)
+					nh:SetStateEnabled(1, false)
+					nh:SetStateEnabled(0, false)
+					nh.Parent = c
+					h:Destroy()
+					me.Character, cam.CameraSubject = c, nh
+					Pepsi.Rs:Wait()
+					cam.CFrame = cf
+					local s = c:FindFirstChild("Animate")
+					if s then
+						s.Disabled = true
+						Pepsi.Rs:Wait()
+						s.Disabled = false
+					end
+					delay(2, function()
+						if nh then
+							nh.Health = 100
+						end
+					end)
+					if dbg and type(dbg.gse) == "function" then
+						pcall(function()
+							dbg.gse(Pepsi.Tool().ClientScriptMouse).onEquippedLocal(Pepsi.Mouse())
+						end)
+					end
+				end
+			end)
+	end
+end)
+
+--autofarmshit
+pcall(function()
+	spawn(function()
+		while true do
+			pcall(function()
+				wait(0.5)
+				if settings.autocollecttokens then
+					workspace.Collectibles.ChildAdded:Connect(function(part)
+						if settings.autocollecttokens then
+							local root = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+							local rootpos = root.CFrame
+							if tostring(part) == tostring(game.Players.LocalPlayer.Name) or tostring(part) == "C" then
+								if (part.Position-root.Position).magnitude <= 50 then
+									root.CFrame = CFrame.new(part.Position.x, part.Position.y, part.Position.z)
+									wait(0.07)
+									root.CFrame = rootpos
+									wait(0.05)
+								end
+							end
+						end
+					end)
+				end
+			end)
+		end
+	end)
+end)
+
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.sunflowerfieldautofarm then
+					while settings.autofarmsettings.sunflowerfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.sunflowerfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.sunflowerfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
 					end
 				end
 			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.sunflowerfieldautofarm then
-			while settings.autofarmsettings.sunflowerfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.sunflowerfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.sunflowerfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.mushroomfieldautofarm then
+					while settings.autofarmsettings.mushroomfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.mushroomfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.mushroomfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.mushroomfieldautofarm then
-			while settings.autofarmsettings.mushroomfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.mushroomfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.mushroomfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.dandelionfieldautofarm then
+					while settings.autofarmsettings.dandelionfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.dandelionfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.dandelionfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.dandelionfieldautofarm then
-			while settings.autofarmsettings.dandelionfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.dandelionfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.dandelionfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.blueflowerautofarm then
+					while settings.autofarmsettings.blueflowerautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.blueflowerfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.blueflowerfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.blueflowerautofarm then
-			while settings.autofarmsettings.blueflowerautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.blueflowerfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.blueflowerfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.cloverfieldautofarm then
+					while settings.autofarmsettings.cloverfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.cloverfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.cloverfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.cloverfieldautofarm then
-			while settings.autofarmsettings.cloverfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.cloverfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.cloverfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.strawberryautofarm then
+					while settings.autofarmsettings.strawberryautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.strawberryfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.strawberryfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.strawberryautofarm then
-			while settings.autofarmsettings.strawberryautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.strawberryfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.strawberryfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.spiderautofarm then
+					while settings.autofarmsettings.spiderautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.spiderfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.spiderfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.spiderautofarm then
-			while settings.autofarmsettings.spiderautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.spiderfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.spiderfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+			local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+			local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+			local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+			local posIndex = 0
+			if settings.autofarmsettings.bambooautofarm then
+				while settings.autofarmsettings.bambooautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+					wait(1)
+					posIndex=posIndex+1
+					if posIndex>#settings.autofarmsettings.fieldpositions.bamboofieldpos then posIndex=1 end
+					for pp = 1,4 do
+						local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+						currp = settings.autofarmsettings.fieldpositions.bamboofieldpos[posIndex]+angle.lookVector*10
+						local newrootpos = CFrame.new(currp)*angle
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+					end
+					autofarmevent:FireServer(5)
+					if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+						warn("bag full")
+						break
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
+				if currentpollen>= maxpollen then
+					currp = nil
+					warn("selling pollen")
+					wait(0.1)
+					game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+					wait(1)
+					game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+					repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+					wait(8)
 				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
 			end
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.bambooautofarm then
-			while settings.autofarmsettings.bambooautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.bamboofieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.bamboofieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.rosefieldautofarm then
+					while settings.autofarmsettings.rosefieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.rosefieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.rosefieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.rosefieldautofarm then
-			while settings.autofarmsettings.rosefieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.rosefieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.rosefieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.treeforestautofarm then
+					while settings.autofarmsettings.treeforestautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.treeforestfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.treeforestfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.treeforestautofarm then
-			while settings.autofarmsettings.treeforestautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.treeforestfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.treeforestfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.cactusfieldautofarm then
+					while settings.autofarmsettings.cactusfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.cactusfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.cactusfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.cactusfieldautofarm then
-			while settings.autofarmsettings.cactusfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.cactusfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.cactusfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.pumpkinpatchautofarm then
+					while settings.autofarmsettings.pumpkinpatchautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.pumpkinpatchfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.pumpkinpatchfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.pumpkinpatchautofarm then
-			while settings.autofarmsettings.pumpkinpatchautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.pumpkinpatchfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.pumpkinpatchfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.pineappleautofarm then
+					while settings.autofarmsettings.pineappleautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.pineapplepatchfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.pineapplepatchfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
+	end)
 end)
 
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.pineappleautofarm then
-			while settings.autofarmsettings.pineappleautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.pineapplepatchfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.pineapplepatchfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.mountaintopautofarm then
+					while settings.autofarmsettings.mountaintopautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.mountaintopfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.mountaintopfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
 				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
+			end)
 		end
-	end
-end)
-
-spawn(function()
-	while wait() do
-		local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-		local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-		local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-		local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-		local posIndex = 0
-		if settings.autofarmsettings.mountaintopautofarm then
-			while settings.autofarmsettings.mountaintopautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
-				wait(1)
-				posIndex=posIndex+1
-				if posIndex>#settings.autofarmsettings.fieldpositions.mountaintopfieldpos then posIndex=1 end
-				for pp = 1,4 do
-					local angle = CFrame.Angles(0,math.pi*.5*pp,0)
-					currp = settings.autofarmsettings.fieldpositions.mountaintopfieldpos[posIndex]+angle.lookVector*10
-					local newrootpos = CFrame.new(currp)*angle
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
-				end
-				autofarmevent:FireServer(5)
-				if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
-					warn("bag full")
-					break
-				end
-			end
-			if currentpollen>= maxpollen then
-				currp = nil
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-			end
-		end
-	end
+	end)
 end)
 
 local splitline = Instance.new("Frame")
@@ -1966,8 +2110,41 @@ miscellaneous:AddSlider({text = "Gravity", value = 196, min = 0, max = 196, call
 	workspace.Gravity = a
 end})
 
-local autooptions = miscellaneous:AddFolder("Auto Options")
+miscellaneous:AddToggle({text = "Annoy Server", state = false, callback = function(a)
+	settings.annoyserver = a
+	if settings.annoyserver then
+		notifmsg = "Annoy Server Enabled"
+		sendnotification()
+	else
+		notifmsg = "Annoy Server Disabled"
+		sendnotification()
+	end
+	while settings.annoyserver do
+		wait()
+		local Event = game.ReplicatedStorage.Events.ToyEvent
+		Event:FireServer("Red Cannon")
+		wait(math.random() - math.random() - math.random())
+		Event:FireServer("Blue Cannon")
+		wait(math.random() - math.random() - math.random())
+		Event:FireServer("Yellow Cannon")
+		wait(math.random() - math.random() - math.random())
+	end
+end})
 
+miscellaneous:AddToggle({text = "God Mode", state = false, callback = function(a)
+	settings.god = a
+	if settings.god then
+		godmode()
+		notifmsg = "God Mode Enabled"
+		sendnotification()
+	else
+		godmode()
+		notifmsg = "God Mode Disabled"
+		sendnotification()
+	end
+end})
+
+local autooptions = miscellaneous:AddFolder("Auto Options")
 autooptions:AddToggle({text = "AutoCollect Pollen", callback = function(a)
 	settings.autocollectpollen = a
 	if settings.autocollectpollen then
@@ -2707,6 +2884,55 @@ autofarmfields:AddToggle({text = "AutoFarm MountainTop", callback = function(a)
 	end
 end})
 
+miscellaneous:AddButton({text = "Purcahse Hive Slot", callback = function()
+	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
+	Event:InvokeServer("Purchase", {
+		Type = "Hive Slot",
+		Category = "HiveSlot",
+		Mute = false,
+		Amount = 0X1
+	})
+end})
+
+miscellaneous:AddButton({text = "Craft Moon Amulet"}, function()
+	local Event = game.ReplicatedStorage.Events.ToyEvent
+	Event:FireServer("Moon Amulet Generator")
+end)
+
+miscellaneous:AddButton({text = "Request HoneyStorm", callback = function()
+	local Event = game.ReplicatedStorage.Events.ToyEvent
+	Event:FireServer("Honeystorm")
+end})
+
+miscellaneous:AddButton({text = "Request Sprout", callback = function()
+	local Event = game.ReplicatedStorage.Events.ToyEvent
+	Event:FireServer("Sprout Summoner")
+end})
+
+miscellaneous:AddButton({text = "Summon Stick Bug", callback = function()
+	local Event = game.ReplicatedStorage.Events.SelectNPCOption
+	Event:FireServer("StartFreeStickBugEvent")
+	Event:FireServer("StartPaidStickBugEvent")
+end})
+
+miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values = {"AtomicTreat", "Basic", "BitterBerry", "BlueBerry", "BumbleBeeJelly", "CloudVial", "Coconut", "Diamond", "Enzymes", "FieldDice", "Glitter", "Glue", "Gold", "Gumdrops", "JellyBeans", "MarshmallowBee", "Micro-Converter", "MoonCharm", "NeonBerry", "Pineapple", "PlasticEgg", "RoyalJelly", "ShockedBeeJelly", "Silver", "StarJelly", "Stinger", "Strawberry", "SunflowerSeed", "Ticket", "Treat"}, callback = function(a)
+	settings.buyitem = a
+	notifmsg = "Item Set To "..a
+	sendnotification()
+end})
+
+miscellaneous:AddButton({text = "Buy", function()
+	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
+	Event:InvokeServer("Purchase", {
+		Type = settings.buyitem;
+		Category = "Eggs";
+		Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
+		Amount = "1"
+	})
+	notifmsg = "Item Purchased"
+	sendnotification()
+end})
+
 miscellaneous:AddButton({text = "Redeem Codes", callback = function()
 	notifmsg = "Redeeming Codes"
 	sendnotification()
@@ -3067,6 +3293,7 @@ uisettings:AddBind({text = "Toggle UI", key = "Q", callback = function()
 end})
 
 credits:AddLabel({text = "Vect0rs; scripts"})
+credits:AddLabel({text = "Pepsi Man/PepsiSwarm; scripts"})
 credits:AddLabel({text = "Jan; ui library"})
 credits:AddLabel({text = "Smail; helpful, cool guy"})
 
@@ -3110,4 +3337,5 @@ notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 sendnotification()
 notifmsg = "Version; "..version
 sendnotification()
+loadpepsishit()
 createinfothingy()
