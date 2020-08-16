@@ -2915,6 +2915,7 @@ miscellaneous:AddButton({text = "Summon Stick Bug", callback = function()
 	Event:FireServer("StartPaidStickBugEvent")
 end})
 
+--[[
 miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values = {"AtomicTreat", "Basic", "BitterBerry", "BlueBerry", "BumbleBeeJelly", "CloudVial", "Coconut", "Diamond", "Enzymes", "FieldDice", "Glitter", "Glue", "Gold", "Gumdrops", "JellyBeans", "MarshmallowBee", "Micro-Converter", "MoonCharm", "NeonBerry", "Pineapple", "PlasticEgg", "RoyalJelly", "ShockedBeeJelly", "Silver", "StarJelly", "Stinger", "Strawberry", "SunflowerSeed", "Ticket", "Treat"}, callback = function(a)
 	settings.buyitem = a
 	notifmsg = "Item Set To "..a
@@ -2927,11 +2928,11 @@ miscellaneous:AddButton({text = "Buy", function()
 		Type = settings.buyitem;
 		Category = "Eggs";
 		Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
-		Amount = "1"
+		Amount = 1;
 	})
 	notifmsg = "Item Purchased"
 	sendnotification()
-end})
+end})]]
 
 miscellaneous:AddButton({text = "Redeem Codes", callback = function()
 	notifmsg = "Redeeming Codes"
