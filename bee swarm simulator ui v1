@@ -169,7 +169,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.3";
+local version = "1.5";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -998,6 +998,7 @@ function createinfothingy()
 	Name.Text = gamename
 	Name.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Name.TextSize = 14.000
+	Name.TextScaled = true
 
 	Role.Name = "Role"
 	Role.Parent = Info
