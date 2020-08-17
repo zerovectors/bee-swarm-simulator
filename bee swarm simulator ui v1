@@ -3057,17 +3057,17 @@ miscellaneous:AddButton({text = "Collect Treasures", callback = function()
 	for k, v in pairs(workspace.Collectibles:GetChildren()) do
 			t = t or Pepsi.Obj(Pepsi.Human(), "RootPart")
 			if t and typeof(v) == "Instance" and v:IsA("BasePart") then
-			if v.Transparency < 0.1 then
-						for k = 1, 7 do
-					local h = Pepsi.Human()
-						if h then
-							tp(v.Position)
-							wait(0.1)
-					end
-			end
+				if v.Transparency < 0.1 then
+							for k = 1, 7 do
+						local h = Pepsi.Human()
+							if h then
+								tp(v.Position)
+								wait(0.1)
+						end
+				end
 			end
 			v.Transparency = 1
-				end
+			end
 	end
 	wait(1)
 		game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
