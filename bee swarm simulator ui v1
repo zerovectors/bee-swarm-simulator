@@ -169,7 +169,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.5";
+local version = "1.6";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -2941,7 +2941,6 @@ miscellaneous:AddButton({text = "Summon Stick Bug", callback = function()
 	sendnotification()
 end})
 
-
 miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values = {"AtomicTreat", "Basic", "BitterBerry", "BlueBerry", "BumbleBeeJelly", "CloudVial", "Coconut", "Diamond", "Enzymes", "FieldDice", "Glitter", "Glue", "Gold", "Gumdrops", "JellyBeans", "MarshmallowBee", "Micro-Converter", "MoonCharm", "NeonBerry", "Pineapple", "PlasticEgg", "RoyalJelly", "ShockedBeeJelly", "Silver", "StarJelly", "Stinger", "Strawberry", "SunflowerSeed", "Ticket", "Treat"}, callback = function(a)
 	settings.buyitem = a
 	print(settings.buyitem)
@@ -2949,13 +2948,20 @@ miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values 
 	sendnotification()
 end})
 
+miscellaneous:AddBox({text = "Amount", callback = function(a)
+	settings.amount = tonumber(a)
+	print(settings.amount)
+	notifmsg = "Set Amount To "..a
+	sendnotification()
+end})
+
 miscellaneous:AddButton({text = "Buy", callback = function()
 	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
 	Event:InvokeServer("Purchase", {
-				Type = settings.buyitem,
-				Category = "Eggs",
-				Mute = ({true, false, false, false, false, false, false, false})[math.random(8)],
-				Amount = 1
+				Type = settings.buyitem;
+				Category = "Eggs";
+				Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
+				Amount = tonumber(settings.amount)
 	})
 	notifmsg = "Item Purchased"
 	sendnotification()
