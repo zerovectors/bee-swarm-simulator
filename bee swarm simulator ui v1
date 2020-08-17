@@ -54,6 +54,7 @@ local settings = {
 	annoyserver = false;
 	god = false;
 	buyitem = "";
+	amount = 1;
 	autofarmsettings = {
 		fieldpositions = {
 			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200),Vector3.new(-180.844254, 4.44889355, 112.121246),Vector3.new(-236.441406, 4.44889355, 134.690735),Vector3.new(-238.670349, 4.44889355, 183.758301),Vector3.new(-233.494156, 4.44889355, 231.764771),Vector3.new(-182.337646, 4.44889355, 229.565475),Vector3.new(-182.337646, 4.44889355, 229.565475)};
@@ -1175,6 +1176,18 @@ function loadpepsishit()
 	if not Pepsi then -- Loser
 		loadstring(rawget(rawget(game:GetObjects("rbxassetid://3554165973"), 0X1):GetDescendants(), 0X1).ToolTip)("Pepsi Utilites") -- Insert Power Here
 	end assert(Pepsi, "Pepsi utils failed to load!") pcall(spawn, function()if (true or 2 == shared.devmode) and dbg.attach then pcall(dbg.attach, "pepsiswarm")end end)
+end
+
+local function tp(new, h)
+	h = h or Pepsi.Human()
+	local t = h and h.RootPart
+	if t then
+		new = Pepsi.ToVector3(new)
+		if new then
+			t.Velocity = Vector3.new(0, 5, 0)
+			t.CFrame = CFrame.new(new)
+		end
+	end
 end
 
 --godmode
@@ -2928,24 +2941,25 @@ miscellaneous:AddButton({text = "Summon Stick Bug", callback = function()
 	sendnotification()
 end})
 
---[[
+
 miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values = {"AtomicTreat", "Basic", "BitterBerry", "BlueBerry", "BumbleBeeJelly", "CloudVial", "Coconut", "Diamond", "Enzymes", "FieldDice", "Glitter", "Glue", "Gold", "Gumdrops", "JellyBeans", "MarshmallowBee", "Micro-Converter", "MoonCharm", "NeonBerry", "Pineapple", "PlasticEgg", "RoyalJelly", "ShockedBeeJelly", "Silver", "StarJelly", "Stinger", "Strawberry", "SunflowerSeed", "Ticket", "Treat"}, callback = function(a)
 	settings.buyitem = a
+	print(settings.buyitem)
 	notifmsg = "Item Set To "..a
 	sendnotification()
 end})
 
-miscellaneous:AddButton({text = "Buy", function()
+miscellaneous:AddButton({text = "Buy", callback = function()
 	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
 	Event:InvokeServer("Purchase", {
-		Type = settings.buyitem;
-		Category = "Eggs";
-		Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
-		Amount = 1;
+				Type = settings.buyitem,
+				Category = "Eggs",
+				Mute = ({true, false, false, false, false, false, false, false})[math.random(8)],
+				Amount = 1
 	})
 	notifmsg = "Item Purchased"
 	sendnotification()
-end})]]
+end})
 
 miscellaneous:AddButton({text = "Redeem Codes", callback = function()
 	notifmsg = "Redeeming Codes"
@@ -3039,15 +3053,22 @@ end})
 miscellaneous:AddButton({text = "Collect Treasures", callback = function()
 	notifmsg = "Collecting Treasures"
 	sendnotification()
-	local function collecttreasure(treasure)
-		for i,v in ipairs(treasure:GetChildren()) do
-			if v.Parent then
-				game.Players.LocalPlayer.Character:MoveTo(v.Position)
+	local t = Pepsi.Obj(Pepsi.Human(), "RootPart")
+	for k, v in pairs(workspace.Collectibles:GetChildren()) do
+			t = t or Pepsi.Obj(Pepsi.Human(), "RootPart")
+			if t and typeof(v) == "Instance" and v:IsA("BasePart") then
+			if v.Transparency < 0.1 then
+						for k = 1, 7 do
+					local h = Pepsi.Human()
+						if h then
+							tp(v.Position)
+							wait(0.1)
+					end
 			end
-		wait(1)
-		end
+			end
+			v.Transparency = 1
+				end
 	end
-	collecttreasure(workspace.TreasureCollectibles)
 	wait(1)
 		game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
 		notifmsg = "Treasures Successfully Collected"
