@@ -19,24 +19,24 @@ local uisettings = library:CreateWindow("UI Settings")
 local credits = library:CreateWindow("Credits")
 local settings = {
 	fullbright = false;
-  PlaceTracersUnderCharacter = false;
+  	PlaceTracersUnderCharacter = false;
 	CHAMSEnabled = false;
 	ESPEnabled = false;
 	vfly = false;
 	noclip = false;
 	TracersLength = 500;
 	CHAMSLength = 500;
-  ESPLength = 10000;
-  Blacklist = { };
+  	ESPLength = 10000;
+  	Blacklist = { };
  	FriendList = { };
-  Colors = {
+  	Colors = {
 	    Enemy = Color3.fromRGB(221, 3, 255);
 	    Ally = Color3.fromRGB(221, 3, 255);
 	    Friend = Color3.fromRGB(221, 3, 255);
 	    Neutral = Color3.fromRGB(255,255,255);
 	    ColorOverride = nil;
-  };
-  CharAddedEvent = { };
+  	};
+  	CharAddedEvent = { };
 	Mob_ESP_CHAMS_Ran_Once = false;
 	superspeed = false;
 	superjump = false;
@@ -3363,6 +3363,8 @@ Plrs.PlayerRemoving:Connect(function(Plr)
 end)
 
 library:Init()
+hintmsg.Text = "Initialization Complete, Enjoy 😎"
+wait(.5)
 uiwatermark()
 hintmsg:Remove()
 line()
