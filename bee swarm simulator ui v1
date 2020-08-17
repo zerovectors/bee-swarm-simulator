@@ -56,14 +56,14 @@ local settings = {
 	buyitem = "";
 	autofarmsettings = {
 		fieldpositions = {
-			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200)};
-			mushroomfieldpos = {Vector3.new(-98, 3.4, 129),Vector3.new(-80, 3.35, 129)};
-			dandelionfieldpos = {Vector3.new(-70.35,3.4,219),Vector3.new(-35,3.4,219),Vector3.new(0,3.4,219)};
-			blueflowerfieldpos = {Vector3.new(100,3.4,96),Vector3.new(140,3.4,96),Vector3.new(185,3.4,96)};
-			cloverfieldpos = {Vector3.new(179,32.9,216),Vector3.new(160,32.9,189),Vector3.new(138,32.9,167)};
-			strawberryfieldpos = {Vector3.new(-193,19.4,11),Vector3.new(-181,19.4,-10),Vector3.new(-162,19.4,-29)};
-			spiderfieldpos = {Vector3.new(-73,19.4,2),Vector3.new(-44,19.4,-21),Vector3.new(-16,19.4,7)};
-			bamboofieldpos = {Vector3.new(92.9,20,-25.6),Vector3.new(132.9,20,-25.6),Vector3.new(172.9,20,-25.6)};
+			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200),Vector3.new(-180.844254, 4.44889355, 112.121246),Vector3.new(-236.441406, 4.44889355, 134.690735),Vector3.new(-238.670349, 4.44889355, 183.758301),Vector3.new(-233.494156, 4.44889355, 231.764771),Vector3.new(-182.337646, 4.44889355, 229.565475),Vector3.new(-182.337646, 4.44889355, 229.565475)};
+			mushroomfieldpos = {Vector3.new(-98, 3.4, 129),Vector3.new(-80, 3.35, 129),Vector3.new(-34.7793465, 4.44889355, 150.38678),Vector3.new(-94.2854691, 4.44889355, 138.496277),Vector3.new(-118.706772, 4.44889355, 86.9430389),Vector3.new(-148.52124, 4.44889355, 74.6550293),Vector3.new(-94.2301483, 4.44889355, 67.8760834),Vector3.new(-32.2842216, 4.44889355, 71.484169)};
+			dandelionfieldpos = {Vector3.new(-70.35,3.4,219),Vector3.new(-35,3.4,219),Vector3.new(0,3.4,219),Vector3.new(-97.73629, 4.44889355, 190.02153),Vector3.new(-77.3544312, 4.44889355, 236.316345),Vector3.new(-29.8881416, 4.44889355, 236.72995),Vector3.new(-27.4828205, 4.44889355, 206.170364),Vector3.new(14.4957857, 4.44889355, 216.792877),Vector3.new(29.7586899, 4.44889355, 193.516571)};
+			blueflowerfieldpos = {Vector3.new(100,3.4,96),Vector3.new(140,3.4,96),Vector3.new(185,3.4,96),Vector3.new(146.685883, 4.44889355, 84.3220367),Vector3.new(189.442322, 4.44889355, 117.205963),Vector3.new(225.71817, 4.44889355, 70.9060974),Vector3.new(138.446686, 4.44889355, 99.7751007),Vector3.new(96.8385086, 4.44889355, 101.932587)};
+			cloverfieldpos = {Vector3.new(179,32.9,216),Vector3.new(160,32.9,189),Vector3.new(138,32.9,167),Vector3.new(121.260864, 33.9488907, 152.041962),Vector3.new(168.024597, 33.9488907, 163.087616),Vector3.new(192.838455, 33.9488907, 208.535858),Vector3.new(142.594299, 33.9488907, 232.110764),Vector3.new(123.58696, 33.9488907, 237.236542)};
+			strawberryfieldpos = {Vector3.new(-193,19.4,11),Vector3.new(-181,19.4,-10),Vector3.new(-162,19.4,-29),Vector3.new(-151.151672, 20.4488945, 23.0654354),Vector3.new(-158.057114, 20.4488945, -28.7274895),Vector3.new(-187.495941, 20.4488945, -44.6583099),Vector3.new(-219.227737, 20.4488945, 16.4569244),Vector3.new(-187.90921, 20.4488945, -3.01192546)};
+			spiderfieldpos = {Vector3.new(-73,19.4,2),Vector3.new(-44,19.4,-21),Vector3.new(-16,19.4,7), Vector3.new(-37.3306084, 20.4488945, -23.4523811), Vector3.new(-3.27463555, 20.4488945, -33.6218796), Vector3.new(3.24734855, 20.4488945, 26.906374)};
+			bamboofieldpos = {Vector3.new(92.9,20,-25.6),Vector3.new(132.9,20,-25.6),Vector3.new(172.9,20,-25.6),Vector3.new(81.4067535, 20.4488945, -9.97167206),Vector3.new(146.13382, 20.4488945, -5.13306427),Vector3.new(174.171082, 20.4488945, -39.9580307),Vector3.new(95.8893509, 20.4488926, -53.1612816),Vector3.new(71.0382919, 20.4488945, -40.0395432),Vector3.new(112.792351, 20.4488945, -29.2416935)};
 			rosefieldpos = {Vector3.new(-300,20,129),Vector3.new(-322.835,20,129),Vector3.new(-350,20,129)};
 			treeforestfieldpos = {Vector3.new(-310.1,65.5,-128.1),Vector3.new(-310.1,65.5,-168.1),Vector3.new(-310.1,65.5,-208.1)};
 			cactusfieldpos = {Vector3.new(-159.5,68,-101.5),Vector3.new(-194.5,68,-112.5),Vector3.new(-229.5,68,-101.5)};
@@ -2918,19 +2918,34 @@ miscellaneous:AddButton({text = "Craft Moon Amulet"}, function()
 end)
 
 miscellaneous:AddButton({text = "Request HoneyStorm", callback = function()
+	notifmsg = "Requesting HoneyStorm"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.ToyEvent
 	Event:FireServer("Honeystorm")
+	wait(.5)
+	notifmsg = "HoneyStorm Requested"
+	sendnotification()
 end})
 
 miscellaneous:AddButton({text = "Request Sprout", callback = function()
+	notifmsg = "Requesting Sprout"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.ToyEvent
 	Event:FireServer("Sprout Summoner")
+	wait(.5)
+	notifmsg = "Sprout Requested"
+	sendnotification()
 end})
 
 miscellaneous:AddButton({text = "Summon Stick Bug", callback = function()
+	notifmsg = "Summoning Stick Bug"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.SelectNPCOption
 	Event:FireServer("StartFreeStickBugEvent")
 	Event:FireServer("StartPaidStickBugEvent")
+	wait(.5)
+	notifmsg = "Stick Bug Summoned"
+	sendnotification()
 end})
 
 --[[
@@ -3015,11 +3030,16 @@ miscellaneous:AddButton({text = "Redeem Codes", callback = function()
 end})
 
 miscellaneous:AddButton({text = "Use Field Dice", callback = function()
+	notifmsg = "Using Field Dice"
+	sendnotification()
 	local A = {
         ["Name"] = "Field Dice"
-      }
-      local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
-      Event:FireServer(A)
+  }
+  local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
+  Event:FireServer(A)
+	wait(.5)
+	notifmsg = "Field Dice Used"
+	sendnotification()
 end})
 
 miscellaneous:AddButton({text = "Sell Pollen", callback = function()
@@ -3037,6 +3057,8 @@ miscellaneous:AddButton({text = "Sell Pollen", callback = function()
 end})
 
 miscellaneous:AddButton({text = "Collect Treasures", callback = function()
+	notifmsg = "Collecting Treasures"
+	sendnotification()
 	local function collecttreasure(treasure)
 		for i,v in ipairs(treasure:GetChildren()) do
 			if v.Parent then
@@ -3048,6 +3070,8 @@ miscellaneous:AddButton({text = "Collect Treasures", callback = function()
 	collecttreasure(workspace.TreasureCollectibles)
 	wait(1)
 		game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
+		notifmsg = "Treasures Successfully Collected"
+		sendnotification()
 end})
 
 miscellaneous:AddButton({text = "ReJoin", callback = function()
