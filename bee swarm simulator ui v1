@@ -75,7 +75,7 @@ local settings = {
 			treeforestfieldpos = {Vector3.new(-310.1,65.5,-128.1),Vector3.new(-310.1,65.5,-168.1),Vector3.new(-310.1,65.5,-208.1)};
 			cactusfieldpos = {Vector3.new(-159.5,68,-101.5),Vector3.new(-194.5,68,-112.5),Vector3.new(-229.5,68,-101.5)};
 			pumpkinpatchfieldpos = {Vector3.new(-169,67,-183.8),Vector3.new(-186.5,67,-186.8),Vector3.new(-222,67,-183.8)};
-			pineapplepatchfieldpos = {Vector3.new(285.3,70.2,-200),Vector3.new(260.3,70.2,-220),Vector3.new(225.3,70.2,-200)};
+			pineapplepatchfieldpos = {Vector3.new(285.3,70.2,-200),Vector3.new(260.3,70.2,-220),Vector3.new(225.3,70.2,-200),Vector3.new(260.234406, 68.4488907, -201.379333),Vector3.new(310.225342, 68.4488907, -174.562637),Vector3.new(306.466034, 68.4488907, -203.247055),Vector3.new(315.399536, 68.4488678, -239.936157),Vector3.new(270.373383, 68.4488907, -249.57283),Vector3.new(243.042053, 68.4488907, -231.98732),Vector3.new(197.202881, 68.4488907, -243.936981)};
 			mountaintopfieldpos = {Vector3.new(93.2, 175.35, -188.49),Vector3.new(93.2, 175.35, -141.98),Vector3.new(59.12, 175.35, -141.98),Vector3.new(59.12, 175.35, -188.49)};
 		};
 		sunflowerfieldautofarm = false;
