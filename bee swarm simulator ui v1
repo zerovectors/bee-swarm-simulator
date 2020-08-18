@@ -2849,7 +2849,7 @@ miscellaneous:AddList({text = "Items", flag = "list", value = "AntPass", values 
 	sendnotification()
 end})
 
-miscellaneous:AddBox({text = "Amount", callback = function(a)
+miscellaneous:AddBox({text = "Amount", value = "1", callback = function(a)
 	settings.amount = tonumber(a)
 	print(settings.amount)
 	notifmsg = "Set Amount To "..a
