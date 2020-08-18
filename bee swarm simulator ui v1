@@ -14,6 +14,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zerov
 local visuals = library:CreateWindow("Visuals")
 local character = library:CreateWindow("Character")
 local miscellaneous = library:CreateWindow("Miscellaneous")
+local autofarmoptions = library:CreateWindow("AutoFarm")
 local teleports = library:CreateWindow("Teleports")
 local uisettings = library:CreateWindow("UI Settings")
 local credits = library:CreateWindow("Credits")
@@ -55,6 +56,11 @@ local settings = {
 	god = false;
 	buyitem = "";
 	amount = 1;
+    sproutdetected = false;
+	sproutstarted = false;
+	sproutsafety = false;
+    autofarmsprouts = true;
+    sproutdistance1 = nil;
 	autofarmsettings = {
 		fieldpositions = {
 			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200),Vector3.new(-180.844254, 4.44889355, 112.121246),Vector3.new(-236.441406, 4.44889355, 134.690735),Vector3.new(-238.670349, 4.44889355, 183.758301),Vector3.new(-233.494156, 4.44889355, 231.764771),Vector3.new(-182.337646, 4.44889355, 229.565475),Vector3.new(-182.337646, 4.44889355, 229.565475)};
@@ -169,7 +175,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.6";
+local version = "1.7";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -1171,6 +1177,13 @@ function uiwatermark()
 	game.CoreGui:WaitForChild("uwuware").watermark:TweenSize(UDim2.new(0, 166,0, 192), "Out", "Linear", 2, true)
 end
 
+function createchangelog()
+	rconsolename("-- Changelog For BeeSwarm Simuwulator "..version.." --")
+	rconsoleprint("@@MAGENTA@@")
+	rconsoleprint("[+] Added Sprout AutoFarm")
+	rconsoleprint("\n[+] Added This Epic Changelog")
+end
+
 function loadpepsishit()
 	Pepsi, dbg = Pepsi, dbg
 	if not Pepsi then -- Loser
@@ -1266,7 +1279,6 @@ pcall(function()
 	end
 end)
 
---autofarmshit
 pcall(function()
 	spawn(function()
 		while true do
@@ -1293,6 +1305,7 @@ pcall(function()
 	end)
 end)
 
+--autofarmshit
 pcall(function()
 	spawn(function()
 		while wait() do
@@ -1304,6 +1317,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.sunflowerfieldautofarm then
 					while settings.autofarmsettings.sunflowerfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.sunflowerfieldpos then posIndex=1 end
@@ -1346,6 +1361,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.mushroomfieldautofarm then
 					while settings.autofarmsettings.mushroomfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.mushroomfieldpos then posIndex=1 end
@@ -1388,6 +1405,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.dandelionfieldautofarm then
 					while settings.autofarmsettings.dandelionfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.dandelionfieldpos then posIndex=1 end
@@ -1430,6 +1449,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.blueflowerautofarm then
 					while settings.autofarmsettings.blueflowerautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.blueflowerfieldpos then posIndex=1 end
@@ -1472,6 +1493,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.cloverfieldautofarm then
 					while settings.autofarmsettings.cloverfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.cloverfieldpos then posIndex=1 end
@@ -1514,6 +1537,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.strawberryautofarm then
 					while settings.autofarmsettings.strawberryautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.strawberryfieldpos then posIndex=1 end
@@ -1556,6 +1581,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.spiderautofarm then
 					while settings.autofarmsettings.spiderautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.spiderfieldpos then posIndex=1 end
@@ -1597,6 +1624,8 @@ pcall(function()
 			local posIndex = 0
 			if settings.autofarmsettings.bambooautofarm then
 				while settings.autofarmsettings.bambooautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+					local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        		autofarmevent:FireServer(5)
 					wait(1)
 					posIndex=posIndex+1
 					if posIndex>#settings.autofarmsettings.fieldpositions.bamboofieldpos then posIndex=1 end
@@ -1638,6 +1667,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.rosefieldautofarm then
 					while settings.autofarmsettings.rosefieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.rosefieldpos then posIndex=1 end
@@ -1673,6 +1704,8 @@ pcall(function()
 	spawn(function()
 		while wait() do
 			pcall(function()
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        	autofarmevent:FireServer(5)
 				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
 				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
 				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
@@ -1722,6 +1755,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.cactusfieldautofarm then
 					while settings.autofarmsettings.cactusfieldautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.cactusfieldpos then posIndex=1 end
@@ -1764,6 +1799,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.pumpkinpatchautofarm then
 					while settings.autofarmsettings.pumpkinpatchautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.pumpkinpatchfieldpos then posIndex=1 end
@@ -1806,6 +1843,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.pineappleautofarm then
 					while settings.autofarmsettings.pineappleautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.pineapplepatchfieldpos then posIndex=1 end
@@ -1848,6 +1887,8 @@ pcall(function()
 				local posIndex = 0
 				if settings.autofarmsettings.mountaintopautofarm then
 					while settings.autofarmsettings.mountaintopautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
 						wait(1)
 						posIndex=posIndex+1
 						if posIndex>#settings.autofarmsettings.fieldpositions.mountaintopfieldpos then posIndex=1 end
@@ -1877,6 +1918,99 @@ pcall(function()
 			end)
 		end
 	end)
+end)
+
+--autofarm sprout
+spawn(function()
+	while true do
+		pcall(function()
+			settings.sproutdistance1 = nil
+			repeat
+				for i,v in pairs(workspace.Particles:GetChildren()) do
+					for x in string.gmatch(v.Name, "Sprout") do
+						if v.Name == "Sprout" then
+							settings.sproutdetected = true
+							--print("Sprout Detected. Distance: " ..tostring(sproutdistance))--
+						end
+					end
+				end
+				wait(0.3)
+			until v == nil
+			wait(0.1)
+		end)
+	end
+end)
+
+spawn(function()
+	while true do
+		pcall(function()
+			startpos = nil
+			wait(.4)
+			if settings.autofarmsprouts and settings.sproutdetected then
+				player = game:GetService("Players").LocalPlayer
+				local pollenLbl = player.Character:FindFirstChild("ProgressLabel",true)
+				if not pollenLbl then
+					print("Backpack not found")
+				end
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				print("A Sprout has Appeared. Farming Time!!")
+				while settings.autofarmsprouts and settings.sproutdetected do
+					local root = game.Players.LocalPlayer.Character.HumanoidRootPart
+					for i,v in pairs(workspace.Particles:GetChildren()) do
+						for x in string.gmatch(v.Name, "Sprout") do
+							if v.Name == "Sprout" then
+								if settings.autofarmsprouts and settings.sproutdetected then
+									if not settings.sproutsafety then
+										local setstartpos = root.CFrame
+										for a = 1, 120 do
+											root.CFrame = v.CFrame * CFrame.new(0, 30, 0)
+											wait(0.1)
+										end
+										wait(1)
+										root.CFrame = v.CFrame * CFrame.new(3, 10, 3)
+										wait(1)
+										local startpos = root.CFrame
+										settings.sproutsafety = true
+										settings.sproutstarted = true
+									end
+								end
+							end
+						end
+					end
+					workspace.Collectibles.ChildAdded:Connect(function(part)
+						if settings.autofarmsprouts and settings.sproutstarted then
+							local rootpos = root.CFrame
+							if tostring(part) == tostring(game.Players.LocalPlayer.Name) or tostring(part) == "C" then
+								if (part.Position-root.Position).magnitude <= 80 then
+									root.CFrame = CFrame.new(part.Position.x, root.Position.y, part.Position.z)
+									wait(0.07)
+									root.CFrame = rootpos
+									wait(0.05)
+								end
+							end
+						end
+					end)
+					if tonumber(player.CoreStats.Pollen.Value+1) > tonumber(maxpollen) then
+						print("Bag Full: " ..tostring(player.CoreStats.Pollen.Value))
+						settings.autofarmsprouts = false
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(4)
+						settings.autofarmsprouts = true
+					end
+					wait(2)
+					root.CFrame = startpos
+				end
+				print("Finished farming Sprout")
+				wait(20)
+				settings.sproutsafety = false
+				root.CFrame = rootpos
+			end
+		end)
+	end
 end)
 
 local splitline = Instance.new("Frame")
@@ -2140,83 +2274,6 @@ miscellaneous:AddToggle({text = "God Mode", state = false, callback = function(a
 end})
 
 local autooptions = miscellaneous:AddFolder("Auto Options")
-autooptions:AddToggle({text = "AutoCollect Pollen", callback = function(a)
-	settings.autocollectpollen = a
-	if settings.autocollectpollen then
-		notifmsg = "AutoCollect Pollen Enabled"
-		sendnotification()
-	    while settings.autocollectpollen do
-	    	wait()
-	        local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
-	        if settings.autocollectpollen == false then return end
-	        autofarmevent:FireServer(5)
-	    end
-	else
-		notifmsg = "AutoCollect Pollen Disabled!"
-		sendnotification()
-	end
-end})
-
-autooptions:AddToggle({text = "AutoSell Pollen", callback = function(a)
-	settings.autosellpollen = a
-	if settings.autosellpollen then
-		notifmsg = "AutoSelling Pollen Enabled"
-		sendnotification()
-		while settings.autosellpollen do
-			wait()
-			local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
-			local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
-			local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
-			if currentpollen>= maxpollen then
-				warn("selling pollen")
-				wait(0.1)
-				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
-				wait(1)
-				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
-				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
-				wait(8)
-				if game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1 then
-					warn("sold pollen")
-				end
-			end
-		end
-	else
-		notifmsg = "AutoSelling Pollen Disabled"
-		sendnotification()
-	end
-end})
-
-autooptions:AddToggle({text = "AutoCollect Tokens", callback = function(a)
-	settings.autocollecttokens = a
-	if settings.autocollecttokens then
-		notifmsg = "AutoCollect Tokens Enabled"
-		sendnotification()
-	else
-		notifmsg = "AutoCollect Tokens Disabled"
-		sendnotification()
-	end
-end})
-
-autooptions:AddToggle({text = "AutoKill Monsters", callback = function(a)
-	settings.autokillmonster = a
-	if settings.autokillmonster then
-		notifmsg = "AutoKill Monsters Enabled"
-		sendnotification()
-	else
-		notifmsg = "AutoKill Monsters Disabled"
-		sendnotification()
-	end
-	while settings.autokillmonster do
-        wait(1)
-        local a_569 = {
-
-	            ["Name"] = "Night Bell"
-	      }
-	    local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
-	    Event:FireServer(a_569)
-    end
-end})
-
 autooptions:AddToggle({text = "Auto Request Sprouts", callback = function(a)
 	settings.autorequestsprout = a
 	if settings.autorequestsprout then
@@ -2739,162 +2796,6 @@ autooptions:AddToggle({text = "Auto Quests", callback = function(a)
 	end
 end})
 
-local autofarmfields = autooptions:AddFolder("AutoFarm Field Options")
-
-autofarmfields:AddToggle({text = "AutoFarm SunFlowers", callback = function(a)
-	settings.autofarmsettings.sunflowerfieldautofarm = a
-	if settings.autofarmsettings.sunflowerfieldautofarm then
-		notifmsg = "SunFlowers AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "SunFlowers AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Mushrooms", callback = function(a)
-	settings.autofarmsettings.mushroomfieldautofarm = a
-	if settings.autofarmsettings.mushroomfieldautofarm then
-		notifmsg = "Mushrooms AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Mushrooms AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm BlueFlowers", callback = function(a)
-	settings.autofarmsettings.blueflowerautofarm = a
-	if settings.autofarmsettings.blueflowerautofarm then
-		notifmsg = "BlueFlowers AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "BlueFlowers AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Dandelions", callback = function(a)
-	settings.autofarmsettings.dandelionfieldautofarm = a
-	if settings.autofarmsettings.dandelionfieldautofarm then
-		notifmsg = "Dandelions AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Dandelions AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Clovers", callback = function(a)
-	settings.autofarmsettings.cloverfieldautofarm = a
-	if settings.autofarmsettings.cloverfieldautofarm then
-		notifmsg = "Clovers AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Clovers AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Strawberries", callback = function(a)
-	settings.autofarmsettings.strawberryautofarm = a
-	if settings.autofarmsettings.strawberryautofarm then
-		notifmsg = "Strawberries AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Strawberries AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm SpiderField", callback = function(a)
-	settings.autofarmsettings.spiderautofarm = a
-	if settings.autofarmsettings.spiderautofarm then
-		notifmsg = "SpiderField AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "SpiderField AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Bamboo", callback = function(a)
-	settings.autofarmsettings.bambooautofarm = a
-	if settings.autofarmsettings.bambooautofarm then
-		notifmsg = "Bamboo AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Bamboo AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Roses", callback = function(a)
-	settings.autofarmsettings.rosefieldautofarm = a
-	if settings.autofarmsettings.rosefieldautofarm then
-		notifmsg = "Roses AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Roses AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Tree Field", callback = function(a)
-	settings.autofarmsettings.treeforestautofarm = a
-	if settings.autofarmsettings.treeforestautofarm then
-		notifmsg = "Tree Field AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Tree Field AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm Cactus Field", callback = function(a)
-	settings.autofarmsettings.cactusfieldautofarm = a
-	if settings.autofarmsettings.cactusfieldautofarm then
-		notifmsg = "Cactus Field AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "Cactus Field AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm PumpkinPatch", callback = function(a)
-	settings.autofarmsettings.pumpkinpatchautofarm = a
-	if settings.autofarmsettings.pumpkinpatchautofarm then
-		notifmsg = "PumpkinPatch AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "PumpkinPatch AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm PineapplePatch", callback = function(a)
-	settings.autofarmsettings.pineappleautofarm = a
-	if settings.autofarmsettings.pineappleautofarm then
-		notifmsg = "PineapplePatch AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "PineapplePatch AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
-autofarmfields:AddToggle({text = "AutoFarm MountainTop", callback = function(a)
-	settings.autofarmsettings.mountaintopautofarm = a
-	if settings.autofarmsettings.mountaintopautofarm then
-		notifmsg = "MountainTop Field AutoFarm Enabled"
-		sendnotification()
-	else
-		notifmsg = "MountainTop Field AutoFarm Disabled"
-		sendnotification()
-	end
-end})
-
 miscellaneous:AddButton({text = "Purcahse Hive Slot", callback = function()
 	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
 	Event:InvokeServer("Purchase", {
@@ -3083,6 +2984,249 @@ end})
 
 miscellaneous:AddButton({text = "ReJoin", callback = function()
 	game:GetService('TeleportService'):Teleport(game.PlaceId)
+end})
+
+autofarmoptions:AddToggle({text = "AutoCollect Pollen", callback = function(a)
+	settings.autocollectpollen = a
+	if settings.autocollectpollen then
+		notifmsg = "AutoCollect Pollen Enabled"
+		sendnotification()
+	    while settings.autocollectpollen do
+	    	wait()
+	        local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        if settings.autocollectpollen == false then return end
+	        autofarmevent:FireServer(5)
+	    end
+	else
+		notifmsg = "AutoCollect Pollen Disabled!"
+		sendnotification()
+	end
+end})
+
+autofarmoptions:AddToggle({text = "AutoSell Pollen", callback = function(a)
+	settings.autosellpollen = a
+	if settings.autosellpollen then
+		notifmsg = "AutoSelling Pollen Enabled"
+		sendnotification()
+		while settings.autosellpollen do
+			wait()
+			local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+			local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+			local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+			if currentpollen>= maxpollen then
+				warn("selling pollen")
+				wait(0.1)
+				game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+				wait(1)
+				game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+				repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+				wait(8)
+				if game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1 then
+					warn("sold pollen")
+				end
+			end
+		end
+	else
+		notifmsg = "AutoSelling Pollen Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmoptions:AddToggle({text = "AutoCollect Tokens", callback = function(a)
+	settings.autocollecttokens = a
+	if settings.autocollecttokens then
+		notifmsg = "AutoCollect Tokens Enabled"
+		sendnotification()
+	else
+		notifmsg = "AutoCollect Tokens Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmoptions:AddToggle({text = "AutoKill Monsters", callback = function(a)
+	settings.autokillmonster = a
+	if settings.autokillmonster then
+		notifmsg = "AutoKill Monsters Enabled"
+		sendnotification()
+	else
+		notifmsg = "AutoKill Monsters Disabled"
+		sendnotification()
+	end
+	while settings.autokillmonster do
+        wait(1)
+        local a_569 = {
+
+	            ["Name"] = "Night Bell"
+	      }
+	    local Event = game:GetService("ReplicatedStorage").Events.PlayerActivesCommand
+	    Event:FireServer(a_569)
+    end
+end})
+
+autofarmoptions:AddToggle({text = "AutoFarm Sprouts", callback = function(a)
+	settings.autofarmsprouts = a
+	if settings.autofarmsprouts then
+		notifmsg = "AutoFarming Sprouts Enabled"
+		sendnotification()
+	else
+		notifmsg = "AutoFarming Sprouts Disabled"
+		sendnotification()
+	end
+end})
+
+local autofarmfields = autofarmoptions:AddFolder("AutoFarm Fields")
+autofarmfields:AddToggle({text = "AutoFarm SunFlowers", callback = function(a)
+	settings.autofarmsettings.sunflowerfieldautofarm = a
+	if settings.autofarmsettings.sunflowerfieldautofarm then
+		notifmsg = "SunFlowers AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "SunFlowers AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Mushrooms", callback = function(a)
+	settings.autofarmsettings.mushroomfieldautofarm = a
+	if settings.autofarmsettings.mushroomfieldautofarm then
+		notifmsg = "Mushrooms AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Mushrooms AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm BlueFlowers", callback = function(a)
+	settings.autofarmsettings.blueflowerautofarm = a
+	if settings.autofarmsettings.blueflowerautofarm then
+		notifmsg = "BlueFlowers AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "BlueFlowers AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Dandelions", callback = function(a)
+	settings.autofarmsettings.dandelionfieldautofarm = a
+	if settings.autofarmsettings.dandelionfieldautofarm then
+		notifmsg = "Dandelions AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Dandelions AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Clovers", callback = function(a)
+	settings.autofarmsettings.cloverfieldautofarm = a
+	if settings.autofarmsettings.cloverfieldautofarm then
+		notifmsg = "Clovers AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Clovers AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Strawberries", callback = function(a)
+	settings.autofarmsettings.strawberryautofarm = a
+	if settings.autofarmsettings.strawberryautofarm then
+		notifmsg = "Strawberries AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Strawberries AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm SpiderField", callback = function(a)
+	settings.autofarmsettings.spiderautofarm = a
+	if settings.autofarmsettings.spiderautofarm then
+		notifmsg = "SpiderField AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "SpiderField AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Bamboo", callback = function(a)
+	settings.autofarmsettings.bambooautofarm = a
+	if settings.autofarmsettings.bambooautofarm then
+		notifmsg = "Bamboo AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Bamboo AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Roses", callback = function(a)
+	settings.autofarmsettings.rosefieldautofarm = a
+	if settings.autofarmsettings.rosefieldautofarm then
+		notifmsg = "Roses AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Roses AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Tree Field", callback = function(a)
+	settings.autofarmsettings.treeforestautofarm = a
+	if settings.autofarmsettings.treeforestautofarm then
+		notifmsg = "Tree Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Tree Field AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Cactus Field", callback = function(a)
+	settings.autofarmsettings.cactusfieldautofarm = a
+	if settings.autofarmsettings.cactusfieldautofarm then
+		notifmsg = "Cactus Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Cactus Field AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm PumpkinPatch", callback = function(a)
+	settings.autofarmsettings.pumpkinpatchautofarm = a
+	if settings.autofarmsettings.pumpkinpatchautofarm then
+		notifmsg = "PumpkinPatch AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "PumpkinPatch AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm PineapplePatch", callback = function(a)
+	settings.autofarmsettings.pineappleautofarm = a
+	if settings.autofarmsettings.pineappleautofarm then
+		notifmsg = "PineapplePatch AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "PineapplePatch AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm MountainTop", callback = function(a)
+	settings.autofarmsettings.mountaintopautofarm = a
+	if settings.autofarmsettings.mountaintopautofarm then
+		notifmsg = "MountainTop Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "MountainTop Field AutoFarm Disabled"
+		sendnotification()
+	end
 end})
 
 teleports:AddButton({text = "Hive Thingy", callback = function()
@@ -3363,8 +3507,8 @@ Plrs.PlayerRemoving:Connect(function(Plr)
 end)
 
 library:Init()
+createchangelog()
 hintmsg.Text = "Initialization Complete, Enjoy 😎"
-wait(.5)
 uiwatermark()
 hintmsg:Remove()
 line()
