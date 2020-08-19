@@ -175,10 +175,11 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.8";
+local version = "1.9";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
+local Claimhiveevent = game.ReplicatedStorage.Events.ClaimHive
 local MyCam = GetCamera();
 if MyCam == nil then
 	return
@@ -1180,9 +1181,11 @@ end
 function createchangelog()
 	rconsolename("-- Changelog For BeeSwarm Simuwulator "..version.." --")
 	rconsoleprint("@@MAGENTA@@")
-	rconsoleprint("[+] Reworked UI-Library Framework uwu")
-	rconsoleprint("\n[+] Added Sprout AutoFarm")
-	rconsoleprint("\n[+] Added This Epic Changelog")
+	rconsoleprint("[*] Will be adding train crab, train snail an some other options tomorrow sometime:tm:")
+	rconsoleprint("\n[+] Added Anti-AFK")
+	rconsoleprint("\n[+] Developers and premium members now have the option to disable the cursor! if u wanna buy premium dm me vect0rs#2851 ;)")
+	rconsoleprint("\n[+] Added some cute notif messages to options that never had them? owo")
+	rconsoleprint("\n[+] Reworked UI-Library Framework uwu")
 end
 
 function loadpepsishit()
@@ -1190,6 +1193,24 @@ function loadpepsishit()
 	if not Pepsi then -- Loser
 		loadstring(rawget(rawget(game:GetObjects("rbxassetid://3554165973"), 0X1):GetDescendants(), 0X1).ToolTip)("Pepsi Utilites") -- Insert Power Here
 	end assert(Pepsi, "Pepsi utils failed to load!") pcall(spawn, function()if (true or 2 == shared.devmode) and dbg.attach then pcall(dbg.attach, "pepsiswarm")end end)
+end
+
+function autoclaimhive()
+	Claimhiveevent:FireServer(6)
+	Claimhiveevent:FireServer(5)
+	Claimhiveevent:FireServer(4)
+	Claimhiveevent:FireServer(3)
+	Claimhiveevent:FireServer(2)
+	Claimhiveevent:FireServer(1)
+end
+
+function antiafk()
+	local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+		vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		wait(1)
+		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	end)
 end
 
 local function tp(new, h)
@@ -2798,6 +2819,8 @@ autooptions:AddToggle({text = "Auto Quests", callback = function(a)
 end})
 
 miscellaneous:AddButton({text = "Purcahse Hive Slot", callback = function()
+	notifmsg = "Purchasing Hive Slot"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
 	Event:InvokeServer("Purchase", {
 		Type = "Hive Slot",
@@ -2805,11 +2828,17 @@ miscellaneous:AddButton({text = "Purcahse Hive Slot", callback = function()
 		Mute = false,
 		Amount = 0X1
 	})
+	notifmsg = "Purchased Hive Slot"
+	sendnotification()
 end})
 
 miscellaneous:AddButton({text = "Craft Moon Amulet"}, function()
+	notifmsg = "Crafting Moon Amulet"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.ToyEvent
 	Event:FireServer("Moon Amulet Generator")
+	notifmsg = "Moon Amulet Crafted"
+	sendnotification()
 end)
 
 miscellaneous:AddButton({text = "Request HoneyStorm", callback = function()
@@ -2858,14 +2887,16 @@ miscellaneous:AddBox({text = "Amount", value = "1", callback = function(a)
 end})
 
 miscellaneous:AddButton({text = "Buy", callback = function()
+	notifmsg = "Buying "..settings.buyitem.." | Amount["..settings.amount.."]"
+	sendnotification()
 	local Event = game.ReplicatedStorage.Events.ItemPackageEvent
 	Event:InvokeServer("Purchase", {
-				Type = settings.buyitem;
-				Category = "Eggs";
-				Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
-				Amount = tonumber(settings.amount)
+		Type = settings.buyitem;
+		Category = "Eggs";
+		Mute = ({true, false, false, false, false, false, false, false})[math.random(8)];
+		Amount = tonumber(settings.amount)
 	})
-	notifmsg = "Item Purchased"
+	notifmsg = settings.buyitem.."["..settings.amount.."]".." Purchased"
 	sendnotification()
 end})
 
@@ -3447,9 +3478,17 @@ if game.Players.LocalPlayer.UserId == 278723686 then
 	uisettings:AddToggle({text = "UI Watermark", state = true, callback = function(a)
 		game.CoreGui:WaitForChild("uwuware").watermark.Visible = a
 	end})
+	uisettings:AddToggle({text = "Cursor", state = true, callback = function(a)
+		_G.cursorenabled = a
+		game.CoreGui.uwuware.Cursor.Visible = a
+	end})
 elseif game.Players.LocalPlayer.UserId == 425451555 then
 	uisettings:AddToggle({text = "UI Watermark", state = true, callback = function(a)
 		game.CoreGui:WaitForChild("uwuware").watermark.Visible = a
+	end})
+	uisettings:AddToggle({text = "Cursor", state = true, callback = function(a)
+		_G.cursorenabled = a
+		game.CoreGui.uwuware.Cursor.Visible = a
 	end})
 end
 
@@ -3509,6 +3548,7 @@ end)
 
 library:Init()
 createchangelog()
+autoclaimhive()
 hintmsg.Text = "Initialization Complete, Enjoy 😎"
 uiwatermark()
 hintmsg:Remove()
