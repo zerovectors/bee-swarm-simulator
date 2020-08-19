@@ -1186,7 +1186,7 @@ end
 function createchangelog()
 	rconsolename("-- Changelog For BeeSwarm Simuwulator -- ")
 	rconsoleprint("@@MAGENTA@@")
-	rconsoleprint("\n-- Changelog For BeeSwarm Simuwulator "..version)
+	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
 	rconsoleprint("@@WHITE@@")
 	rconsoleprint("\n[+] Added train crab an train snail as promised")
 	rconsoleprint("\n[+] Added Teleport on hp amount")
