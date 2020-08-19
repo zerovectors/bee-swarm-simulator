@@ -60,7 +60,12 @@ local settings = {
 	sproutstarted = false;
 	sproutsafety = false;
     autofarmsprouts = true;
-    sproutdistance1 = nil;
+	sproutdistance1 = nil;
+	hptrigger = 20;
+	teleportenabled = false;
+	running = true;
+    tsnail = false;
+    tcrab = false;
 	autofarmsettings = {
 		fieldpositions = {
 			sunflowerfieldpos = {Vector3.new(-204,3.4,142),Vector3.new(-210,3.4,174),Vector3.new(-210,3.4,200),Vector3.new(-180.844254, 4.44889355, 112.121246),Vector3.new(-236.441406, 4.44889355, 134.690735),Vector3.new(-238.670349, 4.44889355, 183.758301),Vector3.new(-233.494156, 4.44889355, 231.764771),Vector3.new(-182.337646, 4.44889355, 229.565475),Vector3.new(-182.337646, 4.44889355, 229.565475)};
@@ -175,7 +180,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.9";
+local version = "1.9.1";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -1179,8 +1184,16 @@ function uiwatermark()
 end
 
 function createchangelog()
-	rconsolename("-- Changelog For BeeSwarm Simuwulator "..version.." --")
+	rconsolename("-- Changelog For BeeSwarm Simuwulator -- "
 	rconsoleprint("@@MAGENTA@@")
+	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
+	rconsoleprint("@@WHITE@@")
+	rconsoleprint("[+] Added train crab an train snail as promised")
+	rconsoleprint("\n[+] Added Teleport on hp amount")
+	rconsoleprint("\n [+] Fixed a bug where the plrs jumppower and speed would fuck up")
+	rconsoleprint("@@MAGENTA@@")
+	rconsoleprint("-- Changelog For BeeSwarm Simuwulator V1.9")
+	rconsoleprint("@@WHITE@@")
 	rconsoleprint("[*] Will be adding train crab, train snail an some other options tomorrow sometime:tm:")
 	rconsoleprint("\n[+] Added Anti-AFK")
 	rconsoleprint("\n[+] Added Auto Claim Hive")
@@ -1226,7 +1239,92 @@ local function tp(new, h)
 	end
 end
 
---godmode
+local function restate()
+	local h = Pepsi.Human()
+	if h and h:GetState() == 11 then
+		h:ChangeState(10)
+	end
+end
+
+-- train snail an crab
+function trainsnail()
+	pcall(function()
+		spawn(function() -- This was a challenge to make.
+			while not settings.running do
+				Pepsi.State(11, false)
+				restate()
+				wait(0.1)
+			end
+			while wait(1) do
+				Pepsi.State(11, false)
+				while settings.tsnail and wait(0.1) do
+					Pepsi.State(11, true)
+					local craby = table.filterfunc(workspace.Monsters:GetChildren(), function(crab)
+						return settings.tsnail and crab and Pepsi.Obj(crab, "Target", "Value") == Pepsi.Char() and Pepsi.Obj(crab, "MonsterType", "Value") == "Stump Snail" and Pepsi.Obj(crab, "Behavior", "Value") == "SnailLoop"
+					end)
+					local h = Pepsi.Human()
+					local tor = h and h.RootPart
+					while Pepsi.Rs:Wait() and h and tor and type(craby) == "table" and #craby > 0 and settings.tsnail do
+						Pepsi.State(11, true)
+						Pepsi.ncall(h, "ChangeState", 11)
+						tor.CFrame = CFrame.new(425, 130, -176, 1, -0.045, 0.008, -8.65, 0.17, 1, -0.05, -1, 0.17)
+						craby = table.filterfunc(workspace.Monsters:GetChildren(), function(crab)
+							return settings.tsnail and crab and Pepsi.Obj(crab, "Target", "Value") == Pepsi.Char() and Pepsi.Obj(crab, "MonsterType", "Value") == "Stump Snail" and Pepsi.Obj(crab, "Behavior", "Value") == "SnailLoop"
+						end)
+					end
+					h = Pepsi.Human()
+					tor = h and h.RootPart
+					if h then
+						restate()
+						if h:GetState() == 11 then
+							restate()
+							Pepsi.ncall(h, "ChangeState", 10) -- Protected name call. Crazy what type of functions get requested and then are later useful.
+						end
+					end
+					Pepsi.State(11, false)
+				end
+			end
+		end)
+	end)
+end
+
+function traincrab()
+	pcall(function()
+		spawn(function() -- This was a challenge to make.
+			while not settings.running do
+				wait(0.1)
+			end
+			while wait(1) do
+				if workspace:FindFirstChild("CrabModel") and Pepsi.Dist(workspace:FindFirstChild("CrabModel")) > 300 then -- This aint our crab
+					workspace:FindFirstChild("CrabModel"):Destroy()
+				end
+				while settings.tcrab and Pepsi.Rs:Wait() do
+					local h = Pepsi.Human()
+					local tor = h and h.RootPart
+					if h and tor then
+						local craby = table.filterfunc(workspace.Monsters:GetChildren(), function(crab)
+							return crab and crab.Name == "Coconut Crab (Lvl 12)" and Pepsi.Obj({
+								silent = true
+							}, crab, "Target", "Value") == Pepsi.Char()
+						end)
+						if h and tor and type(craby) == "table" and #craby > 0 and Pepsi.Health() > 0 and settings.tcrab then
+							h:ChangeState(11)
+							tor.CFrame = CFrame.new(-265, 112, 456, 0, -0.5, -0.9, -1, 0, 0.1, 0, 0.9, -0.5) -- Much gooder method damnit.
+							sleep(1)
+						else
+							h = Pepsi.Human()
+							if h and h:GetState() == 11 then
+								Pepsi.ncall(h, "ChangeState", 10) -- Protected name call. Crazy what type of functions get requested and then are later useful.
+							end
+						end
+					end
+				end
+			end
+		end)
+	end)
+end
+
+-- godmode
 pcall(function()
 	function godmode()
 			pcall(function()
@@ -2195,15 +2293,15 @@ espsettings:AddColor({text = "Ally Color", flag = "color", color = Color3.fromRG
 end})
 
 character:AddSlider({text = "WalkSpeed", value = 16, min = 0, max = 150, callback = function(a)
-	while wait() do
+	game.Players.LocalPlayer.Character.Humanoid.Changed:Connect(function()
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = a
-	end
+	end)
 end})
 
 character:AddSlider({text = "JumpPower", value = 50, min = 0, max = 500, callback = function(a)
-	while wait() do
+	game.Players.LocalPlayer.Character.Humanoid.Changed:Connect(function()
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = a
-	end
+	end)
 end})
 
 character:AddToggle({text = "Fly", callback = function(a)
@@ -2260,6 +2358,97 @@ end})
 
 miscellaneous:AddSlider({text = "Gravity", value = 196, min = 0, max = 196, callback = function(a)
 	workspace.Gravity = a
+end})
+
+miscellaneous:AddSlider({text = "HP Trigger", value = 20, min = 1, max = 100, callback = function(a)
+	settings.hptrigger = a
+end})
+
+miscellaneous:AddToggle({text = "Teleport", callback = function(a)
+	settings.teleportenabled = a
+	if settings.teleportenabled then
+		notifmsg = "Teleport Enabled"
+		sendnotification()
+	else
+		notifmsg = "Teleport Disabled"
+		sendnotification()
+	end
+	local sunflowerfieldautofarmval = settings.autofarmsettings.sunflowerfieldautofarm
+	local mushroomfieldautofarmval = settings.autofarmsettings.mushroomfieldautofarm
+	local dandelionfieldautofarmval = settings.autofarmsettings.dandelionfieldautofarm
+	local blueflowerautofarmval = settings.autofarmsettings.blueflowerautofarm
+	local cloverfieldautofarmval = settings.autofarmsettings.cloverfieldautofarm
+	local strawberryautofarmval = settings.autofarmsettings.strawberryautofarm
+	local spiderautofarmval = settings.autofarmsettings.spiderautofarm
+	local bambooautofarmval = settings.autofarmsettings.bambooautofarm
+	local rosefieldautofarmval = settings.autofarmsettings.rosefieldautofarm
+	local treeforestautofarmval = settings.autofarmsettings.treeforestautofarm
+	local cactusfieldautofarmval = settings.autofarmsettings.cactusfieldautofarm
+	local pumpkinpatchautofarmval = settings.autofarmsettings.pumpkinpatchautofarm
+	local pineappleautofarmval = settings.autofarmsettings.pineappleautofarm
+	local mountaintopautofarmval = settings.autofarmsettings.mountaintopautofarm
+	game.Players.LocalPlayer.Character.Humanoid.Changed:Connect(function()
+		if settings.teleportenabled then
+			if game.Players.LocalPlayer.Character.Humanoid.Health <= tonumber(settings.hptrigger) then
+				game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
+				settings.autofarmsettings.sunflowerfieldautofarm = false;
+				settings.autofarmsettings.mushroomfieldautofarm = false;
+				settings.autofarmsettings.dandelionfieldautofarm = false;
+				settings.autofarmsettings.blueflowerautofarm = false;
+				settings.autofarmsettings.cloverfieldautofarm = false;
+				settings.autofarmsettings.strawberryautofarm = false;
+				settings.autofarmsettings.spiderautofarm = false;
+				settings.autofarmsettings.bambooautofarm = false;
+				settings.autofarmsettings.rosefieldautofarm = false;
+				settings.autofarmsettings.treeforestautofarm = false;
+				settings.autofarmsettings.cactusfieldautofarm = false;
+				settings.autofarmsettings.pumpkinpatchautofarm = false;
+				settings.autofarmsettings.pineappleautofarm = false;
+				settings.autofarmsettings.mountaintopautofarm = false;
+			else
+				settings.autofarmsettings.sunflowerfieldautofarm = sunflowerfieldautofarmval;
+				settings.autofarmsettings.mushroomfieldautofarm = mushroomfieldautofarmval;
+				settings.autofarmsettings.dandelionfieldautofarm = dandelionfieldautofarmval;
+				settings.autofarmsettings.blueflowerautofarm = blueflowerautofarmval;
+				settings.autofarmsettings.cloverfieldautofarm = cloverfieldautofarmval;
+				settings.autofarmsettings.strawberryautofarm = strawberryautofarmval;
+				settings.autofarmsettings.spiderautofarm = spiderautofarmval;
+				settings.autofarmsettings.bambooautofarm = bambooautofarmval;
+				settings.autofarmsettings.rosefieldautofarm = rosefieldautofarmval;
+				settings.autofarmsettings.treeforestautofarm = treeforestautofarmval;
+				settings.autofarmsettings.cactusfieldautofarm = cactusfieldautofarmval;
+				settings.autofarmsettings.pumpkinpatchautofarm = pumpkinpatchautofarmval;
+				settings.autofarmsettings.pineappleautofarm = pineappleautofarmval;
+				settings.autofarmsettings.mountaintopautofarm = mountaintopautofarmval;
+			end
+		end
+	end)
+end})
+
+miscellaneous:AddToggle({text = "Train Snail", callback = function(a)
+	settings.tsnail = a
+	trainsnail()
+	if settings.tsnail then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(425, 130, -176, 1, -0.045, 0.008, -8.65, 0.17, 1, -0.05, -1, 0.17)
+		notifmsg = "Train Snail Enabled"
+		sendnotification()
+	else
+		notifmsg = "Train Snail Disabled"
+		sendnotification()
+	end
+end})
+
+miscellaneous:AddToggle({text = "Train Crab", callback = function(a)
+	settings.tcrab = a
+	traincrab()
+	if settings.tcrab then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-265, 112, 456, 0, -0.5, -0.9, -1, 0, 0.1, 0, 0.9, -0.5)
+		notifmsg = "Train Crab Enabled"
+		sendnotification()
+	else
+		notifmsg = "Train Crab Disabled"
+		sendnotification()
+	end
 end})
 
 miscellaneous:AddToggle({text = "Annoy Server", state = false, callback = function(a)
