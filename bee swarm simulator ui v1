@@ -3083,10 +3083,14 @@ end})
 
 autooptions:AddList({text = "Feed Bees With", value = "Favorite", values = {"Auto", "Blueberry", "Pineapple", "Strawberry", "Treat", "SunflowerSeed", "MoonCharm"}, callback = function(a)
 	settings.values.feeder = a
+	notifmsg = "Feeding Bees With "..a
+	sendnotification()
 end})
 
 autooptions:AddBox({text = "Amount", value = "1", callback = function(a)
 	settings.values.feedamount = a
+	notifmsg = "Set Amount To "..a
+	sendnotification()
 end})
 
 autooptions:AddToggle({text = "AutoFeed Bees", callback = function(a)
