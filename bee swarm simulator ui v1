@@ -194,7 +194,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.9.3";
+local version = "1.9.4";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -1204,12 +1204,13 @@ function createchangelog()
 	rconsoleprint("@@MAGENTA@@")
 	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
 	rconsoleprint("@@WHITE@@")
+	rconsoleprint("\n[+] Added Pepper AutoFarm")
+	rconsoleprint("\n[+] Added Stump AutoFarm")
+	rconsoleprint("@@MAGENTA@@")
+	rconsoleprint("-- Changelog For BeeSwarm Simuwulator v1.9.3")
+	rconsoleprint("@@WHITE@@")
 	rconsoleprint("\n[+] Added Coconut AutoFarm")
 	rconsoleprint("\n[+] Added More Teleport Options In Tree Field AutoFarm, MountainTop AutoFarm, Roses Field AutoFarm", "Cactus Field AutoFarm And Pumpkinpatch AutoFarm")
-	rconsoleprint("@@MAGENTA@@")
-	rconsoleprint("\n-- Changelog For BeeSwarm Simuwulator v1.9.2")
-	rconsoleprint("@@WHITE@@")
-	rconsoleprint("\n[+] Added AutoFeed Bees With AutoFeed Bee Options (Their In AutoOptions) :D | Credits; pepsiman")
 end
 
 function loadpepsishit()
