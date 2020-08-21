@@ -84,12 +84,13 @@ local settings = {
 			strawberryfieldpos = {Vector3.new(-193,19.4,11),Vector3.new(-181,19.4,-10),Vector3.new(-162,19.4,-29),Vector3.new(-151.151672, 20.4488945, 23.0654354),Vector3.new(-158.057114, 20.4488945, -28.7274895),Vector3.new(-187.495941, 20.4488945, -44.6583099),Vector3.new(-219.227737, 20.4488945, 16.4569244),Vector3.new(-187.90921, 20.4488945, -3.01192546)};
 			spiderfieldpos = {Vector3.new(-73,19.4,2),Vector3.new(-44,19.4,-21),Vector3.new(-16,19.4,7), Vector3.new(-37.3306084, 20.4488945, -23.4523811), Vector3.new(-3.27463555, 20.4488945, -33.6218796), Vector3.new(3.24734855, 20.4488945, 26.906374)};
 			bamboofieldpos = {Vector3.new(92.9,20,-25.6),Vector3.new(132.9,20,-25.6),Vector3.new(172.9,20,-25.6),Vector3.new(81.4067535, 20.4488945, -9.97167206),Vector3.new(146.13382, 20.4488945, -5.13306427),Vector3.new(174.171082, 20.4488945, -39.9580307),Vector3.new(95.8893509, 20.4488926, -53.1612816),Vector3.new(71.0382919, 20.4488945, -40.0395432),Vector3.new(112.792351, 20.4488945, -29.2416935)};
-			rosefieldpos = {Vector3.new(-300,20,129),Vector3.new(-322.835,20,129),Vector3.new(-350,20,129)};
-			treeforestfieldpos = {Vector3.new(-310.1,65.5,-128.1),Vector3.new(-310.1,65.5,-168.1),Vector3.new(-310.1,65.5,-208.1)};
-			cactusfieldpos = {Vector3.new(-159.5,68,-101.5),Vector3.new(-194.5,68,-112.5),Vector3.new(-229.5,68,-101.5)};
-			pumpkinpatchfieldpos = {Vector3.new(-169,67,-183.8),Vector3.new(-186.5,67,-186.8),Vector3.new(-222,67,-183.8)};
+			rosefieldpos = {Vector3.new(-300,20,129),Vector3.new(-322.835,20,129),Vector3.new(-350,20,129),Vector3.new(-329.9, 20, 129),Vector3.new(-308, 20, 129),Vector3.new(-282.7, 20, 129),Vector3.new(-282.7, 20, 153.8),Vector3.new(-303.3, 20, 153.8),Vector3.new(-334.8, 20, 153.8),Vector3.new(-354.9, 20, 153.8),Vector3.new(-354.9, 20, 134.6),Vector3.new(-379.2, 20, 134.6),Vector3.new(-379.2, 20, 109.8),Vector3.new(-369.3, 20, 157.7),Vector3.new(-325.1, 20, 122.7),Vector3.new(-299.1, 20, 122.7)};
+			treeforestfieldpos = {Vector3.new(-310.1,65.5,-128.1),Vector3.new(-310.1,65.5,-168.1),Vector3.new(-310.1,65.5,-208.1),Vector3.new(-354.5, 67, -168.8),Vector3.new(-354.5, 67, -202.3),Vector3.new(-335.9, 67, -202.3),Vector3.new(-316, 67, -202.3),Vector3.new(-316, 67, -154.6),Vector3.new(-296.1, 67, -154.6),Vector3.new(-296.1, 67, -172.2),Vector3.new(-296.1, 67, -200.8),Vector3.new(-296.1, 67, -231.4),Vector3.new(-320.3, 67, -231.4)};
+			cactusfieldpos = {Vector3.new(-159.5,68,-101.5),Vector3.new(-194.5,68,-112.5),Vector3.new(-229.5,68,-101.5),Vector3.new(-248.5, 67, -131.7),Vector3.new(-213, 67, -131.7),Vector3.new(-213, 67, -120.6),Vector3.new(-224.8, 67, -120.6),Vector3.new(-236.4, 67, -120.6),Vector3.new(-236.4, 67, -97.1),Vector3.new(-212.9, 67, -97.1),Vector3.new(-193.7, 67, -97.1),Vector3.new(-174.4, 67, -97.1),Vector3.new(-154.7, 67, -97.1),Vector3.new(-137.7, 67, -97.1),Vector3.new(-137.7, 67, -82.3),Vector3.new(-158.2, 67, -82.3)};
+			pumpkinpatchfieldpos = {Vector3.new(-169,67,-183.8),Vector3.new(-186.5,67,-186.8),Vector3.new(-222,67,-183.8),Vector3.new(-222, 67, -161.4),Vector3.new(-191.8, 67, -161.4),Vector3.new(-191.8, 67, -202.9),Vector3.new(-167.1, 67, -202.9),Vector3.new(-167.1, 67, -183.3),Vector3.new(-145.1, 67, -183.3),Vector3.new(-248.5, 67, -183.3),Vector3.new(-248.5, 67, -205.4)};
 			pineapplepatchfieldpos = {Vector3.new(285.3,70.2,-200),Vector3.new(260.3,70.2,-220),Vector3.new(225.3,70.2,-200),Vector3.new(260.234406, 68.4488907, -201.379333),Vector3.new(310.225342, 68.4488907, -174.562637),Vector3.new(306.466034, 68.4488907, -203.247055),Vector3.new(315.399536, 68.4488678, -239.936157),Vector3.new(270.373383, 68.4488907, -249.57283),Vector3.new(243.042053, 68.4488907, -231.98732),Vector3.new(197.202881, 68.4488907, -243.936981)};
-			mountaintopfieldpos = {Vector3.new(93.2, 175.35, -188.49),Vector3.new(93.2, 175.35, -141.98),Vector3.new(59.12, 175.35, -141.98),Vector3.new(59.12, 175.35, -188.49)};
+			mountaintopfieldpos = {Vector3.new(93.2, 175.35, -188.49),Vector3.new(93.2, 175.35, -141.98),Vector3.new(59.12, 175.35, -141.98),Vector3.new(59.12, 175.35, -188.49),Vector3.new(59.12, 175.35, -173.79),Vector3.new(38.02, 175.35, -173.79),Vector3.new(38.02, 175.35, -121.99),Vector3.new(80.22, 175.35, -121.99),Vector3.new(104.02, 175.35, -121.99),Vector3.new(119.62, 175.35, -121.99),Vector3.new(119.62, 175.35, -148.89),Vector3.new(99.52, 175.35, -148.89),Vector3.new(99.52, 175.35, -164.79),Vector3.new(112.62, 175.35, -164.79),Vector3.new(112.62, 175.35, -183.99),Vector3.new(97.92, 175.35, -183.99),Vector3.new(97.92, 175.35, -205.39),Vector3.new(97.92, 175.35, -205.39)};
+			coconutfieldpos = {Vector3.new(-251.643, 71.471, 428.576),Vector3.new(-251.643, 71.471, 457.676),Vector3.new(-270.443, 71.471, 457.676),Vector3.new(-270.443, 71.471, 441.576),Vector3.new(-286.743, 71.471, 441.576),Vector3.new(-286.743, 71.471, 431.976),Vector3.new(-303.543, 71.471, 431.976),Vector3.new(-303.543, 71.471, 450.076),Vector3.new(-294.443, 71.471, 480.176),Vector3.new(-266.343, 71.471, 480.176),Vector3.new(-266.343, 71.471, 462.676),Vector3.new(-237.643, 71.471, 462.676),Vector3.new(-237.643, 71.471, 485.776),Vector3.new(-256.443, 71.471, 485.776),Vector3.new(-273.243, 71.471, 485.776),Vector3.new(-301.043, 71.471, 485.776),Vector3.new(-301.043, 71.471, 500.576),Vector3.new(-275.643, 71.471, 500.576),Vector3.new(-252.243, 71.471, 500.576),Vector3.new(-231.143, 71.471, 500.576)};
 		};
 		sunflowerfieldautofarm = false;
 		mushroomfieldautofarm = false;
@@ -105,6 +106,7 @@ local settings = {
 		pumpkinpatchautofarm = false;
 		pineappleautofarm = false;
 		mountaintopautofarm = false;
+		coconutautofarm = false;
 	};
 	WayPoints = {
 		["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
@@ -188,7 +190,7 @@ local Teams = game:GetService("Teams");
 local UserInput = game:GetService("UserInputService");
 local Light = game:GetService("Lighting");
 local HTTP = game:GetService("HttpService");
-local version = "1.9.2";
+local version = "1.9.3";
 local gamename = "Vect0rs Hub";
 local notifmsg = "[Vect0rs Hub] Loaded; Bee Simulator UI";
 local RepStor = game:GetService("ReplicatedStorage");
@@ -1198,13 +1200,12 @@ function createchangelog()
 	rconsoleprint("@@MAGENTA@@")
 	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
 	rconsoleprint("@@WHITE@@")
-	rconsoleprint("\n[+] Added AutoFeed Bees With AutoFeed Bee Options (Their In AutoOptions) :D | Credits; pepsiman")
+	rconsoleprint("\n[+] Added Coconut AutoFarm")
+	rconsoleprint("\n[+] Added More Teleport Options In Tree Field AutoFarm, MountainTop AutoFarm, Roses Field AutoFarm", "Cactus Field AutoFarm And Pumpkinpatch AutoFarm")
 	rconsoleprint("@@MAGENTA@@")
-	rconsoleprint("\n-- Changelog For BeeSwarm Simuwulator v1.9.1")
+	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
 	rconsoleprint("@@WHITE@@")
-	rconsoleprint("\n[+] Added train crab an train snail as promised")
-	rconsoleprint("\n[+] Added Teleport on hp amount")
-	rconsoleprint("\n[+] Fixed a bug where the plrs jumppower and speed would fuck up")
+	rconsoleprint("\n[+] Added AutoFeed Bees With AutoFeed Bee Options (Their In AutoOptions) :D | Credits; pepsiman")
 end
 
 function loadpepsishit()
@@ -2089,6 +2090,50 @@ pcall(function()
 						for pp = 1,4 do
 							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
 							currp = settings.autofarmsettings.fieldpositions.mountaintopfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
+				end
+			end)
+		end
+	end)
+end)
+
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.coconutautofarm then
+					while settings.autofarmsettings.coconutautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.coconutfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.coconutfieldpos[posIndex]+angle.lookVector*10
 							local newrootpos = CFrame.new(currp)*angle
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
 						end
@@ -3546,6 +3591,17 @@ autofarmfields:AddToggle({text = "AutoFarm MountainTop", callback = function(a)
 		sendnotification()
 	else
 		notifmsg = "MountainTop Field AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Coconut Field", callback = function(a)
+	settings.autofarmsettings.coconutautofarm = a
+	if settings.autofarmsettings.coconutautofarm then
+		notifmsg = "Coconut Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Coconut Field AutoFarm Disabled"
 		sendnotification()
 	end
 end})
