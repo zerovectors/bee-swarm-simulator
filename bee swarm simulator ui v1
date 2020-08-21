@@ -1203,7 +1203,7 @@ function createchangelog()
 	rconsoleprint("\n[+] Added Coconut AutoFarm")
 	rconsoleprint("\n[+] Added More Teleport Options In Tree Field AutoFarm, MountainTop AutoFarm, Roses Field AutoFarm", "Cactus Field AutoFarm And Pumpkinpatch AutoFarm")
 	rconsoleprint("@@MAGENTA@@")
-	rconsoleprint("-- Changelog For BeeSwarm Simuwulator "..version)
+	rconsoleprint("\n-- Changelog For BeeSwarm Simuwulator v1.9.2")
 	rconsoleprint("@@WHITE@@")
 	rconsoleprint("\n[+] Added AutoFeed Bees With AutoFeed Bee Options (Their In AutoOptions) :D | Credits; pepsiman")
 end
