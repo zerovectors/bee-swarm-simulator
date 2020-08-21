@@ -91,6 +91,8 @@ local settings = {
 			pineapplepatchfieldpos = {Vector3.new(285.3,70.2,-200),Vector3.new(260.3,70.2,-220),Vector3.new(225.3,70.2,-200),Vector3.new(260.234406, 68.4488907, -201.379333),Vector3.new(310.225342, 68.4488907, -174.562637),Vector3.new(306.466034, 68.4488907, -203.247055),Vector3.new(315.399536, 68.4488678, -239.936157),Vector3.new(270.373383, 68.4488907, -249.57283),Vector3.new(243.042053, 68.4488907, -231.98732),Vector3.new(197.202881, 68.4488907, -243.936981)};
 			mountaintopfieldpos = {Vector3.new(93.2, 175.35, -188.49),Vector3.new(93.2, 175.35, -141.98),Vector3.new(59.12, 175.35, -141.98),Vector3.new(59.12, 175.35, -188.49),Vector3.new(59.12, 175.35, -173.79),Vector3.new(38.02, 175.35, -173.79),Vector3.new(38.02, 175.35, -121.99),Vector3.new(80.22, 175.35, -121.99),Vector3.new(104.02, 175.35, -121.99),Vector3.new(119.62, 175.35, -121.99),Vector3.new(119.62, 175.35, -148.89),Vector3.new(99.52, 175.35, -148.89),Vector3.new(99.52, 175.35, -164.79),Vector3.new(112.62, 175.35, -164.79),Vector3.new(112.62, 175.35, -183.99),Vector3.new(97.92, 175.35, -183.99),Vector3.new(97.92, 175.35, -205.39),Vector3.new(97.92, 175.35, -205.39)};
 			coconutfieldpos = {Vector3.new(-251.643, 71.471, 428.576),Vector3.new(-251.643, 71.471, 457.676),Vector3.new(-270.443, 71.471, 457.676),Vector3.new(-270.443, 71.471, 441.576),Vector3.new(-286.743, 71.471, 441.576),Vector3.new(-286.743, 71.471, 431.976),Vector3.new(-303.543, 71.471, 431.976),Vector3.new(-303.543, 71.471, 450.076),Vector3.new(-294.443, 71.471, 480.176),Vector3.new(-266.343, 71.471, 480.176),Vector3.new(-266.343, 71.471, 462.676),Vector3.new(-237.643, 71.471, 462.676),Vector3.new(-237.643, 71.471, 485.776),Vector3.new(-256.443, 71.471, 485.776),Vector3.new(-273.243, 71.471, 485.776),Vector3.new(-301.043, 71.471, 485.776),Vector3.new(-301.043, 71.471, 500.576),Vector3.new(-275.643, 71.471, 500.576),Vector3.new(-252.243, 71.471, 500.576),Vector3.new(-231.143, 71.471, 500.576)};
+			peppersfieldpos = {Vector3.new(-449.651, 123.702, 557.055),Vector3.new(-449.651, 123.702, 543.156),Vector3.new(-449.651, 123.702, 527.956),Vector3.new(-449.651, 123.702, 509.256),Vector3.new(-449.651, 123.702, 490.956),Vector3.new(-462.151, 123.702, 490.956),Vector3.new(-462.151, 123.702, 509.056),Vector3.new(-462.151, 123.702, 528.456),Vector3.new(-462.151, 123.702, 544.055),Vector3.new(-476.051, 123.702, 544.055),Vector3.new(-476.051, 123.702, 529.755),Vector3.new(-476.051, 123.702, 515.755),Vector3.new(-476.051, 123.702, 500.555),Vector3.new(-476.051, 123.702, 485.355),Vector3.new(-490.75, 123.702, 472.755),Vector3.new(-490.75, 123.702, 487.755),Vector3.new(-490.75, 123.702, 504.555),Vector3.new(-490.75, 123.702, 519.655),Vector3.new(-490.75, 123.702, 539.955),Vector3.new(-490.75, 123.702, 558.755),Vector3.new(-511.651, 123.702, 558.755),Vector3.new(-511.651, 123.702, 541.755),Vector3.new(-511.651, 123.702, 525.155),Vector3.new(-511.651, 123.702, 509.055),Vector3.new(-511.651, 123.702, 492.755),Vector3.new(-511.651, 123.702, 478.755)};
+			stumpfieldpos = {Vector3.new(386.915, 95.93, -176.271),Vector3.new(393.015, 95.93, -160.971),Vector3.new(412.816, 95.93, -160.971),Vector3.new(412.816, 95.93, -145.771),Vector3.new(412.816, 95.93, -173.571),Vector3.new(412.816, 95.93, -193.971),Vector3.new(412.816, 95.93, -214.071),Vector3.new(431.716, 95.93, -214.071),Vector3.new(431.716, 95.93, -197.171),Vector3.new(431.716, 95.93, -175.971),Vector3.new(431.716, 95.93, -157.771),Vector3.new(448.416, 95.93, -176.171),Vector3.new(448.416, 95.93, -157.671),Vector3.new(448.416, 95.93, -191.471)}
 		};
 		sunflowerfieldautofarm = false;
 		mushroomfieldautofarm = false;
@@ -107,6 +109,8 @@ local settings = {
 		pineappleautofarm = false;
 		mountaintopautofarm = false;
 		coconutautofarm = false;
+		pepperautofarm = false;
+		stumpautofarm = false;
 	};
 	WayPoints = {
 		["Black Bear"] = CFrame.new(-258.1, 5, 299.7),
@@ -2159,6 +2163,94 @@ pcall(function()
 	end)
 end)
 
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.pepperautofarm then
+					while settings.autofarmsettings.pepperautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.peppersfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.peppersfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
+				end
+			end)
+		end
+	end)
+end)
+
+pcall(function()
+	spawn(function()
+		while wait() do
+			pcall(function()
+				local pollenLbl = game.Players.LocalPlayer.Character:FindFirstChild("ProgressLabel",true)
+				local maxpollen = tonumber(pollenLbl.Text:match("%d+$"))
+				local currentpollen = tonumber(pollenLbl.Text:match("%d+"))
+				local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+				local posIndex = 0
+				if settings.autofarmsettings.stumpautofarm then
+					while settings.autofarmsettings.stumpautofarm and tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value) < tonumber(maxpollen) do
+						local autofarmevent = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").ClickEvent;
+	        			autofarmevent:FireServer(5)
+						wait(1)
+						posIndex=posIndex+1
+						if posIndex>#settings.autofarmsettings.fieldpositions.stumpfieldpos then posIndex=1 end
+						for pp = 1,4 do
+							local angle = CFrame.Angles(0,math.pi*.5*pp,0)
+							currp = settings.autofarmsettings.fieldpositions.stumpfieldpos[posIndex]+angle.lookVector*10
+							local newrootpos = CFrame.new(currp)*angle
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = newrootpos
+						end
+						autofarmevent:FireServer(5)
+						if tonumber(game.Players.LocalPlayer.CoreStats.Pollen.Value+1) >= tonumber(maxpollen) then
+							warn("bag full")
+							break
+						end
+					end
+					if currentpollen>= maxpollen then
+						currp = nil
+						warn("selling pollen")
+						wait(0.1)
+						game:GetService("Players").LocalPlayer.Character:MoveTo(game:GetService("Players").LocalPlayer.SpawnPos.Value.p)
+						wait(1)
+						game:GetService("ReplicatedStorage").Events.PlayerHiveCommand:FireServer("ToggleHoneyMaking")
+						repeat wait(0.5) until game:GetService("Players").LocalPlayer.CoreStats.Pollen.Value < 1
+						wait(8)
+					end
+				end
+			end)
+		end
+	end)
+end)
+
 --autofarm sprout
 spawn(function()
 	while true do
@@ -2169,7 +2261,20 @@ spawn(function()
 					for x in string.gmatch(v.Name, "Sprout") do
 						if v.Name == "Sprout" then
 							settings.sproutdetected = true
-							--print("Sprout Detected. Distance: " ..tostring(sproutdistance))--
+							settings.autofarmsettings.sunflowerfieldautofarm = false
+							settings.autofarmsettings.mushroomfieldautofarm = false
+							settings.autofarmsettings.dandelionfieldautofarm = false
+							settings.autofarmsettings.blueflowerautofarm = false
+							settings.autofarmsettings.cloverfieldautofarm = false
+							settings.autofarmsettings.strawberryautofarm = false
+							settings.autofarmsettings.spiderautofarm = false
+							settings.autofarmsettings.bambooautofarm = false
+							settings.autofarmsettings.rosefieldautofarm = false
+							settings.autofarmsettings.treeforestautofarm = false
+							settings.autofarmsettings.cactusfieldautofarm = false
+							settings.autofarmsettings.pumpkinpatchautofarm = false
+							settings.autofarmsettings.pineappleautofarm = false
+							settings.autofarmsettings.mountaintopautofarm = false
 						end
 					end
 				end
@@ -2181,6 +2286,20 @@ spawn(function()
 end)
 
 spawn(function()
+	local sunflowerfieldautofarmval = settings.autofarmsettings.sunflowerfieldautofarm
+	local mushroomfieldautofarmval = settings.autofarmsettings.mushroomfieldautofarm
+	local dandelionfieldautofarmval = settings.autofarmsettings.dandelionfieldautofarm
+	local blueflowerautofarmval = settings.autofarmsettings.blueflowerautofarm
+	local cloverfieldautofarmval = settings.autofarmsettings.cloverfieldautofarm
+	local strawberryautofarmval = settings.autofarmsettings.strawberryautofarm
+	local spiderautofarmval = settings.autofarmsettings.spiderautofarm
+	local bambooautofarmval = settings.autofarmsettings.bambooautofarm
+	local rosefieldautofarmval = settings.autofarmsettings.rosefieldautofarm
+	local treeforestautofarmval = settings.autofarmsettings.treeforestautofarm
+	local cactusfieldautofarmval = settings.autofarmsettings.cactusfieldautofarm
+	local pumpkinpatchautofarmval = settings.autofarmsettings.pumpkinpatchautofarm
+	local pineappleautofarmval = settings.autofarmsettings.pineappleautofarm
+	local mountaintopautofarmval = settings.autofarmsettings.mountaintopautofarm
 	while true do
 		pcall(function()
 			startpos = nil
@@ -2245,6 +2364,20 @@ spawn(function()
 				end
 				print("Finished farming Sprout")
 				wait(20)
+				settings.autofarmsettings.sunflowerfieldautofarm = sunflowerfieldautofarmval;
+				settings.autofarmsettings.mushroomfieldautofarm = mushroomfieldautofarmval;
+				settings.autofarmsettings.dandelionfieldautofarm = dandelionfieldautofarmval;
+				settings.autofarmsettings.blueflowerautofarm = blueflowerautofarmval;
+				settings.autofarmsettings.cloverfieldautofarm = cloverfieldautofarmval;
+				settings.autofarmsettings.strawberryautofarm = strawberryautofarmval;
+				settings.autofarmsettings.spiderautofarm = spiderautofarmval;
+				settings.autofarmsettings.bambooautofarm = bambooautofarmval;
+				settings.autofarmsettings.rosefieldautofarm = rosefieldautofarmval;
+				settings.autofarmsettings.treeforestautofarm = treeforestautofarmval;
+				settings.autofarmsettings.cactusfieldautofarm = cactusfieldautofarmval;
+				settings.autofarmsettings.pumpkinpatchautofarm = pumpkinpatchautofarmval;
+				settings.autofarmsettings.pineappleautofarm = pineappleautofarmval;
+				settings.autofarmsettings.mountaintopautofarm = mountaintopautofarmval;
 				settings.sproutsafety = false
 				root.CFrame = rootpos
 			end
@@ -3606,6 +3739,28 @@ autofarmfields:AddToggle({text = "AutoFarm Coconut Field", callback = function(a
 	end
 end})
 
+autofarmfields:AddToggle({text = "AutoFarm Pepper Field", callback = function(a)
+	settings.autofarmsettings.pepperautofarm = a
+	if settings.autofarmsettings.pepperautofarm then
+		notifmsg = "Pepper Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Pepper Field AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
+autofarmfields:AddToggle({text = "AutoFarm Stump Field", callback = function(a)
+	settings.autofarmsettings.stumpautofarm = a
+	if settings.autofarmsettings.stumpautofarm then
+		notifmsg = "Stump Field AutoFarm Enabled"
+		sendnotification()
+	else
+		notifmsg = "Stump Field AutoFarm Disabled"
+		sendnotification()
+	end
+end})
+
 teleports:AddButton({text = "Hive Thingy", callback = function()
 	game.Players.LocalPlayer.Character:MoveTo(game.Players.LocalPlayer.SpawnPos.Value.p)
 	notifmsg = "Teleported To Hive Thingy"
@@ -3827,6 +3982,21 @@ if game.Players.LocalPlayer.UserId == 278723686 then
 		_G.cursorenabled = a
 		game.CoreGui.uwuware.Cursor.Visible = a
 	end})
+	local devmenu = library:CreateWindow("Developer Shit")
+	devmenu:AddButton({text = "Copy Char Vector3 Position", callback = function()
+		setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.Position))
+		notifmsg = "Copied Character Vector3 To Clipboard"
+		sendnotification()
+	end})
+	devmenu:AddButton({text = "Copy Char CFrame Position", callback = function()
+		setclipboard(tostring(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame))
+		notifmsg = "Copied Character CFrame To Clipboard"
+		sendnotification()
+	end})
+	devmenu:AddButton({text = "Custom Remote Spy", callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/zerovectors/remote-spys/master/sentinel_spy", true))()
+	end})
+
 elseif game.Players.LocalPlayer.UserId == 425451555 then
 	uisettings:AddToggle({text = "UI Watermark", state = true, callback = function(a)
 		game.CoreGui:WaitForChild("uwuware").watermark.Visible = a
@@ -3838,7 +4008,6 @@ elseif game.Players.LocalPlayer.UserId == 425451555 then
 end
 
 local toplineoptions = uisettings:AddFolder("Topbar")
-
 toplineoptions:AddColor({text = "Line Colour", flag = "color", color = Color3.fromRGB(221, 3, 255), callback = function(a)
 	settings.LineColour = a
 	splitline.BackgroundColor3 = settings.LineColour
